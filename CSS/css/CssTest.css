@@ -1,0 +1,14 @@
+* {   /* 전체 선택자* */
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: skyblue;
+    font-size: 50px;
+}
+
+#welcome {
+    color: aquamarine;
+    font-size: 80px;
+}
