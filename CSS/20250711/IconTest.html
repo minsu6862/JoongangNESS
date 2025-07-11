@@ -7,13 +7,14 @@
     <title>Document</title>
     <style>
         ul {
-            list-style: none;
+            /* list-style: none;  리스트 앞 o기호 삭제 */
+            list-style-image: url("../images/dot.png");
         }
-
         h1 {
             font-size: 100px;
             color: rgba(255, 1, 1, 0.4); /* a는 알파값, 투명도 지정 */
             font-family: '메이플스토리';
+            text-shadow: 5px 5px 3px red;  /* 글씨 그림자 효과 */
         }
         a:link { /* 아직 방문하지 않은 링크 상태 */
             text-decoration: none;
