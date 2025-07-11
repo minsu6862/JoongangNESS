@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+
+        h1 {
+            font-size: 100px;
+            color: rgba(255, 1, 1, 0.4); /* a는 알파값, 투명도 지정 */
+            font-family: '메이플스토리';
+        }
+        a:link { /* 아직 방문하지 않은 링크 상태 */
+            text-decoration: none;
+            color: red;
+        }
+        a:visited { /* 방문했던 링크 상태 */
+            color: pink;
+        }
+        a:hover { /* 마우스 포인터가 링크위에 올라왔을때 */
+            text-decoration: underline;
+            color: green;
+            font-weight: bold;
+        }
+        a:active { /* 링크 클릭하고 버튼에서 손을 데기 전까지 상태 */
+            color: cyan;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>
+                <i class="fa-solid fa-caret-down"></i>
+                <a href="#">메뉴 1</a>
+            </li>
+            <li>
+                <i class="fa-solid fa-caret-down"></i>
+                <a href="#">메뉴 2</a>
+            </li>
+            <li>
+                <i class="fa-solid fa-caret-down"></i>
+                <a href="FontTest.html">메뉴 3</a>
+            </li>
+        </ul>
+    </nav>
+
+    <h1>CSS 색상 연습</h1>
+</body>
+</html>
