@@ -1,0 +1,154 @@
+#indexPage {
+       width: 1200px;
+       margin: 0 auto; /* 가운데 정렬 */
+}
+#logo {
+    margin-top: 10px;
+    margin-left: 30px;
+}
+#topMenu {
+    list-style: none;
+    padding: 0;
+    float: right;
+    margin: 50px 10px 0 0;
+}
+#topMenu li {
+    display: inline;
+}
+#navMenu {
+    border: 1px solid green;
+    margin: 5px;
+    display: flex;
+    justify-content: space-around;
+}
+#navMenu li {
+    display: inline;
+}
+#sectionMenu {
+    height: 110px;
+    background-color: #00a8ab;
+    border: 1px solid green;
+    margin: 5px;
+    text-align: center;
+}
+#sectionMenu li {
+    display: inline;
+    align-content: center;
+}
+.formBox {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.line {
+    margin: 25px 5px 20px 5px;
+    border-top: 1px solid #cccccc;
+}
+.bannerBar {
+    margin: 0 70px 0 70px;
+}
+#customer {
+    margin-top: 25px;
+    width: 370px;
+    height: 130px;
+    float: left;
+}
+#customer img {
+    margin: 0px 5px 5px 5px;
+}
+#notice {
+    margin-top: 25px;
+    margin-left: 40px;
+    width: 370px;
+    height: 130px;
+    float: left;
+}
+#notice img{
+    margin: 5px;
+}
+#notice ul {
+    margin-top: 5px;
+}
+#notice li {
+    margin-top: 5px;
+}
+#notice .subject {
+    margin-left: 7px;
+    float: left;
+    font-size: 12px;
+}
+#notice .date {
+    margin-right: 5px;
+    float: right;
+    font-size: 12px;
+}
+#faq {
+    margin-top: 25px;
+    margin-left: 40px;
+    width: 370px;
+    height: 130px;
+    float: left;
+}
+.title {
+    float: left;
+}
+.more {
+    float: right;
+}
+#siteMap div {
+    height: 140px;
+    float: left;
+    margin: 0 8px 0 7px;
+}
+
+#siteMap li {
+    list-style-image: url("../images/blue_dot.gif");
+    margin: 5px 0 0 20px;
+}
+#siteMap h3 {
+    font-size: 15px;
+    color: #12b9b2;
+    margin-left: 15px;
+}
+#siteMap ul {
+    color: #666666;
+}
+footer {
+    border-top: 3px solid #00a8ab;
+    padding: 20px;
+}
+#address {
+    float: left;
+}
+#link {
+    float: right;
+}
+#link h3 {
+    font-size: 16px;
+    color: #00a8ab;
+}
+#link select {
+    margin-top: 5px;
+    margin-left: 50px;
+    width: 100px;
+    height: 20px;
+    font-size: 11px;
+}
+#link #icons {
+    margin-top: 5px;
+    text-align: right;
+}
+#footerMenu {
+    margin-top: 5px;
+}
+#companyInfo {
+    margin-top: 20px;
+}
+#companyInfo li {
+    margin-top: 2px;
+}
+#copyRight {
+    margin-top: 10px;
+    font-size: 11px;
+    color: black;
+    font-style: bold;
+}
