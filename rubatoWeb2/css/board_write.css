@@ -1,0 +1,50 @@
+main {
+    width: 750px;
+    float: right;
+}
+main h2#board_title {
+    margin-top: 20px;
+    padding: 0 0 5px 5px;
+}
+main #write_title {
+    text-align: center;
+    background-color: #eeeeee;
+    border-top: 2px solid #bbbbbb;
+    border-bottom: 1px solid #bbbbbb;
+    padding: 5px;
+    margin-top: 10px;
+}
+main table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    width: 100%;
+}
+main table td {
+    border-bottom: 1px solid #dddddd;
+    padding: 10px;
+}
+main table td.col1 {
+    border-right: 1px solid #dddddd;
+    width: 20%;
+    text-align: center;
+}
+main #name input {
+    width: 100px;
+    height: 16px;
+    border-color: #00ba02;
+}
+main #subject input {
+    width: 550px;
+    height: 16px;
+}
+main #content textarea {
+    width: 600px;
+    height: 200px;
+}
+main #upload input {
+    width: 200px;
+}
+main #buttons {
+    text-align: right;
+    margin: 20px 5px 0 0;
+}

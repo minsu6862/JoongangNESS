@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/common.css" type="text/css">
     <link rel="stylesheet" href="css/header.css" type="text/css">
-    <link rel="stylesheet" href="css/board_view.css" type="text/css">
     <link rel="stylesheet" href="css/footer.css" type="text/css">
     <link rel="stylesheet" href="css/board_left.css" type="text/css">
+    <link rel="stylesheet" href="css/board_write.css" type="text/css">
     <title>클래식 기타 커뮤니티</title>
 </head>
 <body>
@@ -65,26 +65,33 @@
         <main>
             <img src="images/comm.gif">
             <h2 id="board_title">자유 게시판</h2>
-            <div id="view_title_box">
-                <span>까스통님의 선물인 보드카가 정말 독하네요</span>
-                <span id="info">루바토 | 조회 | 57 | 2025-07-15 (09:20)</span>
+            <div id="write_title">
+                <h2>글쓰기</h2>
             </div>
-            <div id="view_content">
-                까스통님 고맙습니다.<br>
-                까스통님 고맙습니다.<br>
-                까스통님 고맙습니다.<br>
-                까스통님 고맙습니다.<br>
-                까스통님 고맙습니다.
-            </div>
-            <div id="comment_box">
-                <img id="title_comment" src="images/title_comment.gif">
-                <textarea></textarea>
-                <img id="ok_ripple" src="images/ok_ripple.gif">
-            </div>
+            <table>
+                <tr id="name">
+                    <td class="col1">이름</td>
+                    <td class="col2"><input type="text"></td>
+                </tr>
+                <tr id="subject">
+                    <td class="col1">제목</td>
+                    <td class="col2"><input type="text"></td>
+                </tr>
+                <tr id="content">
+                    <td class="col1">내용</td>
+                    <td class="col2"><textarea></textarea></td>
+                </tr>
+                <tr id="upload">
+                    <td class="col1">업로드 파일</td>
+                    <td class="col2">
+                        <input type="text">
+                        <input type="file">
+                    </td>
+                </tr>
+            </table>
             <div id="buttons">
-                <a href="#"><img src="images/delete.png"></a>
+                <a href="#"><img src="images/ok.png"></a>
                 <a href="boardList.html"><img src="images/list.png"></a>
-                <a href="boardWrite.html"><img src="images/write.png"></a>
             </div>
         </main>
 
