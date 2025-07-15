@@ -94,3 +94,15 @@ main table td a:active {
     text-decoration: none;
     color: #444444;
 }
+
+main #buttons {
+    margin-top: 20px;
+}
+main #buttons .buttons_col1 {
+    float: left;
+    margin-left: 300px;
+}
+main #buttons .buttons_col2 {
+    float: right;
+    margin-right: 10px;
+}
