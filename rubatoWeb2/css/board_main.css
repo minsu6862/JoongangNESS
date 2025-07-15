@@ -41,3 +41,56 @@ main #search #search_btn {
     top: 6px;
     left: 240px;
 }
+
+/* 게시판 목록 테이블 */
+main table {
+    border-collapse: collapse;  /* 테이블 디자인 무조건 적용 */
+    margin: 0 auto;
+    width: 100%;
+}
+
+main table tr {
+    height: 30px;   /* 게시판 목록의 줄 높이 */
+}
+main table th {
+    background-color: #eeeeee;
+    border-top: 2px solid #aaaaaa;
+}
+main table td {
+    border-bottom: 1px solid #dddddd;
+}
+main table td.col1 {
+    text-align: center;
+}
+main table td.col2 {
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+    width: 60%;
+}
+main table td.col3 {
+    text-align: center;
+}
+main table td.col4 {
+    text-align: center;
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+}
+main table td.col5 {
+    text-align: center;
+}
+main table td a:link {
+    text-decoration: none;
+    color: #444444;
+}
+main table td a:hover {
+    text-decoration: underline;
+    color: #444444;
+}
+main table td a:visited {
+    text-decoration: none;
+    color: #444444;
+}
+main table td a:active {
+    text-decoration: none;
+    color: #444444;
+}
