@@ -66,6 +66,7 @@ main table td.col2 {
     border-left: 1px solid #dddddd;
     border-right: 1px solid #dddddd;
     width: 60%;
+    padding-left: 5px;
 }
 main table td.col3 {
     text-align: center;
@@ -95,6 +96,7 @@ main table td a:active {
     color: #444444;
 }
 
+/* 게시판 목록 하단 기능 배치 */
 main #buttons {
     margin-top: 20px;
 }
