@@ -34,6 +34,7 @@ aside #join_search {
     margin: 10px 0 0 5px;
 }
 
+
 aside #guestbook {
     width: 186px;
     height: 135px;
@@ -55,4 +56,85 @@ aside #guestbook li {
 }
 aside #guestbook ul {
     margin: 10px 0 0 40px;
+}
+
+
+main {
+    width: 758px;
+    float: right;
+}
+#notice_free_youtube {
+    height: 250px;
+    margin-top: 10px;
+    position: relative;
+}
+#notice {
+    width: 360px;
+    position: absolute;
+}
+main .latest_title {
+    padding-bottom: 3px;
+    border-bottom: 1px solid #cccccc;
+}
+main .latest_title img.latest_img {
+    float: left;
+}
+main .latest_title img.more {
+    float: right;
+}
+main .latest_content .image {
+    float: left;
+    margin: 10px 0 0 20px;
+}
+main .latest_content .list {
+    float: right;
+}
+main .latest_content li {
+    padding: 10px 0 10px 0;
+}
+main .latest_content .list div {
+    float: left;
+}
+main .latest_content .list .subject {
+    width: 170px;
+}
+
+main #free {
+    width: 360px;
+    position: absolute;
+    top: 120px;
+}
+
+main #youtube {
+    width: 365px;
+    height: 250px;
+    position: absolute;
+    left: 380px;
+}
+main #youtube_img {
+    margin: 10px 0 0 45px;
+}
+
+main #gallery_box {
+    width: 749px;
+    height: 204px;
+    margin: 10px 0 25px 5px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #dddddd;
+}
+main #gallery_list {
+    padding: 25px 0 0 18px;
+}
+main .items {
+    float: left;
+    text-align: center;
+    margin-left: 35px;
+}
+main .items li {
+    margin-top: 3px;
+}
+main .item_font {
+    font-size: 11px;
+    font-weight: bold;
 }
