@@ -1,0 +1,84 @@
+aside {
+    width: 190px;
+    float: left;
+}
+aside #login_box {
+    width: 186px;
+    height: 120px;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    background-color: #f3f3f3;
+}
+aside #login_title {
+    margin: 10px 0 0 10px;
+}
+aside #input_button {
+    margin: 10px 0 0 10px;
+}
+aside #login_input {
+    float: left;
+}
+aside #login_btn {
+    float: left ;
+    margin: 3px 0 0 5px;
+}
+aside #login_input input {
+    width: 100px;
+    height: 20px;
+    border: 1px solid #dddddd;
+}
+aside #login_input li {
+    margin-top: 2px
+}
+aside #join_search {
+    margin: 10px 0 0 5px;
+}
+
+
+aside #sub_menu {
+    width: 186px;
+    height: 320px;
+    margin-top: 15px;
+    background-image: url("../images/sub_menu_bg.png");
+    background-repeat: no-repeat;
+}
+aside #sub_menu ul {
+    padding: 80px 0 0 30px;
+}
+aside #sub_menu li {
+    margin: 10px 0 0 0;
+}
+aside #sub_menu a:link {
+    text-decoration: none;
+    font-size: 14px;
+    color: #444444;
+}
+aside #sub_menu a:hover {
+    text-decoration: none;
+    font-size: 14px;
+    color: #0000ff;
+    font-weight: bold;
+}
+aside #sub_menu a:visited {
+    text-decoration: none;
+    font-size: 14px;
+    color: #444444;
+}
+aside #sub_menu a:active {
+    text-decoration: none;
+    font-size: 14px;
+    color: #444444;
+}
+aside #sub_banner {
+    width: 186px;
+    height: 156px;
+    margin: 15px 0 40px 0;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+}
+aside #sub_banner ul {
+    padding: 6px 0 0 4px;
+}
+aside #sub_banner ul img {
+    display: block;
+}

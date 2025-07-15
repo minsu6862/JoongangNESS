@@ -1,0 +1,43 @@
+main {
+    width: 758px;
+    float: right;
+}
+main h2#board_title {
+    border-bottom: 1px solid #bbbbbb;
+    margin-top: 20px;
+    padding: 0 0 5px 5px;
+}
+main #total_search {
+    height: 35px;
+    position: relative;
+}
+main #total {
+    position: absolute;
+    top: 10px;
+}
+main #search {
+    position: absolute;
+    left: 450px;
+}
+main #search #search_img {
+    position: absolute;
+    top: 9px;
+}
+main #search #search_select {
+    position: absolute;
+    top: 8px;
+    left: 60px;
+}
+main #search #search_input {
+    position: absolute;
+    top: 8px;
+    left: 130px;
+}
+main #search #search_input input {
+    width: 100px;
+}
+main #search #search_btn {
+    position: absolute;
+    top: 6px;
+    left: 240px;
+}

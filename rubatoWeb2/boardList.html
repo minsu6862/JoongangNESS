@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/common.css" type="text/css">
+    <link rel="stylesheet" href="css/header.css" type="text/css">
+    <link rel="stylesheet" href="css/board_main.css" type="text/css">
+    <link rel="stylesheet" href="css/footer.css" type="text/css">
+    <link rel="stylesheet" href="css/board_left.css" type="text/css">
+    <title>클래식 기타 커뮤니티</title>
+</head>
+<body>
+    <div id="wrap">
+        <header>
+            <a href="index.html"><img src="images/logo.png"></a>
+            <nav id="top_menu">
+                HOME | LOGIN | JOIN | NOTICE
+            </nav>
+            <nav id="main_menu">
+                <ul>
+                    <li><a href="board_list.html">자유게시판</a></li>
+                    <li><a href="">기타 연주</a></li>
+                    <li><a href="">공동 구매</a></li>
+                    <li><a href="">연주회 안내</a></li>
+                    <li><a href="">회원 게시판</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <aside>
+            <article id="login_box">    <!-- 로그인박스 -->
+                <img id="login_title" src="images/ttl_login.png">
+                <div id="input_button">
+                    <ul id="login_input">
+                        <li><input type="text" placeholder="ID"></li>
+                        <li><input type="password" placeholder="password"></li>
+                    </ul>
+                    <input id="login_btn" type="image" src="images/btn_login.gif">
+                </div>
+                <div class="clear"></div>
+                <div id="join_search">
+                    <img src="images/btn_join.gif">
+                    <img src="images/btn_search.gif">
+                </div>
+            </article>  <!-- 로그인박스 끝-->
+            <nav id="sub_menu">
+                <ul>
+                    <li><a href="boardList.html">+ 자유게시판</a></li>
+                    <li><a href="#">+ 방명록</a></li>
+                    <li><a href="#">+ 공지사항</a></li>
+                    <li><a href="#">+ 등업 요청</a></li>
+                    <li><a href="#">+ 포토갤러리</a></li>
+                </ul>
+            </nav>
+            <article id="sub_banner">
+                <ul>
+                    <li><img src="images/banner1.png"></li>
+                    <li><img src="images/banner2.png"></li>
+                    <li><img src="images/banner3.png"></li>
+                </ul>
+            </article>
+        </aside>
+
+        <main>
+            <img src="images/comm.gif">
+            <h2 id="board_title">자유 게시판</h2>
+            <div id="total_search">
+                <div id="total">▷ 총 3개의 게시물이 있습니다.</div>
+                <div id="search">
+                    <div id="search_img">
+                        <img src="images/select_search.gif">
+                    </div>
+                    <div id="search_select">
+                        <select>
+                            <option>제목</option>
+                            <option>내용</option>
+                            <option>글쓴이</option>
+                            <option>댓글</option>
+                        </select>
+                    </div>
+                    <div id="search_input">
+                        <input type="text">
+                    </div>
+                    <div id="search_btn">
+                        <img src="images/search_button.gif">
+                    </div>
+                </div>
+            </div>
+
+            <table>
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>글쓴이</th>
+                    <th>일시</th>
+                    <th>조회수</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><a href="#">까스통님의 선물인 보드카가 정말 독하네요!</a></td>
+                    <td>루바토</td>
+                    <td>2025-07-15</td>
+                    <td>57</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><a href="#">까스통님의 선물인 보드카가 정말 독하네요!</a></td>
+                    <td>루바토</td>
+                    <td>2025-07-15</td>
+                    <td>84</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><a href="#">까스통님의 선물인 보드카가 정말 독하네요!</a></td>
+                    <td>루바토</td>
+                    <td>2025-07-15</td>
+                    <td>48</td>
+                </tr>
+            </table>
+
+            <div>
+                <div>
+                    ◀ 이전 1 다음 ▶
+                </div>
+                <div>
+                    <img src="images/list.png">
+                    <a href="#"><img src="images/write.png"></a>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <img id="footer_logo" src="images/footer_logo.gif">
+            <ul id="address">
+                <li>서울시 강남구 삼성동 1234 우: 123-1234</li>
+                <li>TEL : 031-123-1234 Email : email@domain.com</li>
+                <li>COPYRIGHT (C) 루바토 ALL RIGHT RESERVED</li>
+            </ul>
+            <ul id="footer_sns">
+                <li><img src="images/facebook.gif"></li>
+                <li><img src="images/blog.gif"></li>
+                <li><img src="images/twitter.gif"></li>
+            </ul>
+        </footer>
+    </div>
+</body>
+</html>
