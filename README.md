@@ -8,4 +8,4 @@
 2. CSS
 3. JavaScript
 4. GitHub 연동
-5. JAVA
+5. JAVA - jdk11, jdk17
