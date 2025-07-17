@@ -37,6 +37,8 @@ public class OperatorTest {
 		
 		if (kor <= 90 || eng <= 90 || mat <= 90 || sci <= 90 ) {
 			System.out.println("과락");
+			
+			
 		}
 	}
 }
