@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class ifTest02 {
 	public static void main(String[] args) {
-		int x = (int) (Math.random() * 6 + 1);
+		int x = (int) (Math.random() * 6) + 1;
 		
 		if(x == 6) {
 			System.out.println("주사위 값은 6입니다!");
