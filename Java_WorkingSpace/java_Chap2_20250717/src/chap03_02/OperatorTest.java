@@ -12,7 +12,7 @@ public class OperatorTest {
 		
 		System.out.println(a);
 		System.out.println(b);
-		
+
 		int x = 1;
 		int y = 1;
 		int z = 2;
