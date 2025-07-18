@@ -2,7 +2,7 @@ package ch04_01;
 
 import java.util.Random;
 
-public class ifTest02 {
+public class IfTest02 {
 	public static void main(String[] args) {
 		int x = (int) (Math.random() * 6) + 1;
 		

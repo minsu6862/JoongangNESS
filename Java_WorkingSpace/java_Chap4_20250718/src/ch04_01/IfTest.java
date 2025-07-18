@@ -1,6 +1,6 @@
 package ch04_01;
 
-public class ifTest {
+public class IfTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
