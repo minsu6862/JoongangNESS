@@ -1,7 +1,7 @@
 package ch06_05;
 
 public class StaticTest {
-
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
@@ -15,10 +15,11 @@ public class StaticTest {
 		man2.height = 60;
 		man2.color = "blue";
 		
+		
 	}
 
 }
-
+	
 
 class human {
 	static final double PI = 3.14;	//정적 멤버 변수, 일반적으로 만들 경우 man1과 man2에 각각 pi가 만들어지기에
