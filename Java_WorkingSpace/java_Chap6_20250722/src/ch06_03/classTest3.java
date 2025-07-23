@@ -46,4 +46,9 @@ class Engine {
 	public void printEngine() {
 		System.out.println("엔진 타입은 " + type);
 	}
+	
+	public String[] outputCars() {
+		String[] cars = {"소나타", "아반떼", "K5" };
+		return cars;
+	}
 }
