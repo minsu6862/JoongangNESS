@@ -12,6 +12,6 @@ public class AverageCalculator {
 		for(int num : a) {
 			sum += num;
 		}
-		System.out.println(sum/a.length);
+		System.out.println((double) sum/a.length);
 	}
 }

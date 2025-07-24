@@ -6,7 +6,7 @@ public class Triangle {
 	public Triangle(int a, int b, int c) {
 		this.a = a;
 		this.b = b;
-		this.c = c;
+		this.c = c; 
 	}
 	
 	public boolean isValid() {
