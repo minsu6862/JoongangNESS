@@ -5,7 +5,7 @@ public class Shape {
 	double height;
 	double sum;
 	
-	public double shapeArea() {
+	public double shapeArea(double width, double height) {
 		return sum;
 	}
 }
