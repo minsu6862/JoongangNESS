@@ -63,6 +63,8 @@ public class Main {
 			e.printStackTrace();
 			System.out.println("제대로 된 파일을 선택해 주세요");
 		}
+		
+		sc.close();
 	}
 
 }
