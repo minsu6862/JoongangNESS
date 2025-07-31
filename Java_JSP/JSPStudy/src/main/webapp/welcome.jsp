@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>첫 JSP 페이지</title>
 </head>
 <body>
-	JSP 스터디 그룹에 오신 것을 환영합니다.
+	<h2>JSP 스터디 그룹에 오신 것을 환영합니다.이잉</h2>>
 </body>
 </html>
