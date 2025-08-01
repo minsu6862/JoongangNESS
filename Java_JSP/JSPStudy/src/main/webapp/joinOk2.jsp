@@ -1,4 +1,3 @@
-<%@page import="jdk.internal.org.jline.terminal.TerminalBuilder.SystemOutput"%>
 <%@page import="java.util.Enumeration"%>
 <%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -11,6 +10,8 @@
 </head>
 <body>
 	<%
+		request.setCharacterEncoding("UTF-8");	
+	
   		String memberId = request.getParameter("memberId");
 		String memberPw = request.getParameter("memberPw");
 		String memberName = request.getParameter("memberName");
