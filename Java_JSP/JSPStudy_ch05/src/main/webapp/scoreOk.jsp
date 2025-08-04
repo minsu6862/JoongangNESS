@@ -8,6 +8,7 @@
 </head>
 <body>
 	<%
+		request.setCharacterEncoding("UTF-8");
   		int kor = Integer.parseInt(request.getParameter("kor"));
   		int eng = Integer.parseInt(request.getParameter("eng"));
   		int mat = Integer.parseInt(request.getParameter("mat"));

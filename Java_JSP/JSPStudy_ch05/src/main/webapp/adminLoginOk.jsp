@@ -15,12 +15,11 @@
 	<%
 	if(adminId.equals("admin") || adminPw.equals("1234")) {
 	%>
-	안녕하세요 관리자님, 로그인 성공하셨습니다.
+	<h2>안녕하세요 관리자님, 로그인 성공하셨습니다.</h2>
 	<%
 	} else {
-	%>
-	로그인 실패하셨습니다.
-	<%
+	response.sendRedirect("adminLogin.jsp");
+    return;
 	}
 	%>
 </html>
