@@ -1,0 +1,58 @@
+/* 글 내용 보기 메인 페이지 */
+main {
+    width: 758px;
+    float: right;
+}
+
+main h2#board_title { /* 자유게시판 */
+    /* border-bottom: 1px solid #bbbbbb; */
+    margin-top: 20px;
+    padding: 0 0 5px 5px;
+}
+
+main #view_title_box {
+    border-top: 2px solid #aaaaaa;
+    background-color: #eeeeee;
+    padding: 10px 10px 10px 10px;
+    margin-top: 10px;
+}
+
+main #view_title_box #info {
+    margin-left: 270px;
+}
+
+main #view_content {
+    padding: 20px 0 10px 10px;
+}
+
+main #comment_box {
+    height: 112px;
+    background-color: #efefef;
+    border-top: 1px solid #cccccc;
+    position: relative;
+}
+
+main #comment_box #title_comment {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+main #comment_box textarea {
+    width: 520px;
+    height: 80px;
+    position: absolute;
+    top: 15px;
+    left: 150px;
+}
+
+main #comment_box #ok_ripple {
+    position: absolute;
+    top: 15px;
+    left: 675px;
+}
+
+main #buttons {
+    text-align: right;
+    margin-top: 20px;
+}

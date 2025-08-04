@@ -1,0 +1,68 @@
+/* 게시판 글쓰기 */
+main {
+    width: 758px;
+    float: right;
+}
+
+main h2#board_title { /* 자유게시판 */
+    /* border-bottom: 1px solid #bbbbbb; */
+    margin-top: 20px;
+    padding: 0 0 5px 5px;
+}
+
+main #write_title {
+    text-align: center;
+    background-color: #eeeeee;
+    border-top: 2px solid #bbbbbb;
+    border-bottom: 1px solid #bbbbbb;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+main table {
+    border-collapse: collapse;
+    margin: 0 auto; /* 테이블 자체 가운데 정렬 */
+    width: 100%;
+}
+
+main table td {
+    border-bottom: 1px solid #dddddd;
+    padding: 10px;
+    
+}
+
+main table td.col1 {
+    border-right: 1px solid #dddddd;
+    width: 20%;
+    text-align: center;
+}
+
+main table td.col2 {    
+    padding: 5px ;
+}
+
+main #name input {
+    width: 100px;
+    height: 16px;
+    border: 1px solid #00ba2e;
+}
+
+main #subject input {
+    width: 550px;
+    height: 16px;
+}
+
+main #upload input {
+    width: 200px;
+    /* height: 25px; */
+}
+
+main #content textarea {
+    width: 550px;
+    height: 200px;
+}
+
+main #buttons {
+    text-align: right;
+    margin-top: 20px;
+}

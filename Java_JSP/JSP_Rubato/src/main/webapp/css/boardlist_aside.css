@@ -1,0 +1,100 @@
+/* 게시판 목록 페이지 좌측 메뉴 aside */
+
+aside {
+    width: 190px;
+    float: left;
+}
+
+/* 로그인 박스 */
+aside #login_box {
+    width: 186px;
+    height: 120px;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    background-color: #f3f3f3;
+}
+
+aside #login_title {
+    margin: 10px 0 0 10px;
+}
+
+aside #input_button {
+    margin: 10px 0 0 10px;
+}
+
+aside #login_input input {
+    width: 100px;
+    height: 20px;
+    border: 1px solid #dddddd;
+}
+
+aside #login_input {
+    float: left;
+}
+
+aside #login_btn {
+    float: left;
+    margin: 3px 0 0 5px;
+}
+
+aside #login_input li {
+    margin: 2px 0 0 0;
+}
+
+aside #join_search {
+    margin: 10px 0 0 5px;
+}
+
+/* 서브 메뉴 */
+aside #sub_menu {
+    width: 186px; /* 원본 그림의 가로 길이와 일치 */
+    height: 320px; /* 원본 그림의 세로 길이와 일치 */
+    background-image: url("../images/sub_menu_bg.png");
+    background-repeat: no-repeat;
+    margin-top: 15px;
+}
+
+aside #sub_menu ul {
+    padding: 80px 0 0 30px;
+    /* border: 1px solid red; */
+}
+
+aside #sub_menu ul li {
+    margin-top: 10px;
+}
+
+aside #sub_menu a:link {
+    font-size: 14px;
+    text-decoration: none;
+    color: #444444;
+}
+
+aside #sub_menu a:hover {
+    font-size: 14px;
+    text-decoration: none;
+    color: #444444;
+    font-weight: bold;
+}
+
+aside #sub_menu a:visited {
+    font-size: 14px;
+    text-decoration: none;
+    color: #444444;
+}
+
+/* 서브 배너 */
+aside #sub_banner {
+    width: 186px;
+    height: 160px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+aside #sub_banner ul {
+    padding: 6px 0 0 4px;
+}
+
+aside #sub_banner ul img {
+    display: block; /* 수평->수직으로 정렬 */
+}

@@ -1,0 +1,126 @@
+/* 글 목록 메인 컨텐츠 */
+main {
+    width: 758px;
+    float: right;
+}
+
+main h2#board_title { /* 자유게시판 */
+    border-bottom: 1px solid #bbbbbb;
+    margin-top: 20px;
+    padding: 0 0 5px 5px;
+}
+
+main #total_search {
+    height: 35px;
+    position: relative;
+    /* border: 1px solid red; */
+}
+
+main #total {
+    position: absolute;
+    top: 10px;
+}
+
+main #search {
+    position: absolute;
+    left:450px;
+}
+
+main #search #search_img {
+    position: absolute;
+    top: 9px;
+}
+
+main #search #search_select {    
+    position: absolute;
+    top: 8px;
+    left: 60px;
+}
+
+main #search #search_input {
+    position: absolute;
+    top: 7px;
+    left: 130px;
+}
+
+main #search #search_input input {
+    width: 100px;
+}
+
+main #search #search_btn {
+    position: absolute;
+    top: 6px;
+    left: 240px;
+}
+
+/* 게시판 목록 테이블 */
+main table {
+    border-collapse: collapse; /* 테이블 디자인 무조건 적용 */
+    margin: 0 auto;
+    width: 100%;
+}
+
+main table tr {
+    height: 30px; /* 게시판 목록의 줄 높이 */
+}
+
+main table th {
+    background-color: #eeeeee;
+    border-top: 2px solid #aaaaaa;
+}
+
+main table td {
+    border-bottom: 1px solid #dddddd;
+}
+
+main table td.col1 {
+    text-align: center;
+}
+
+main table td.col2 { /* 제목 열 */
+    width: 60%;
+}
+
+main table td.col3 {
+    text-align: center;
+}
+
+main table td.col4 {
+    text-align: center;
+}
+
+main table td.col5 {
+    text-align: center;
+}
+
+main table td a:link {
+    text-decoration: none;
+    color: #444444;
+}
+
+main table td a:hover {
+    text-decoration: underline;
+    color: #444444;
+}
+
+main table td a:visited {
+    text-decoration: none;
+    color: #444444;
+}
+
+/* 게시판 목록 하단 페이지 이동 버튼 및 목록, 글쓰기 버튼 */
+main #buttons {
+    margin-top: 20px;
+}
+
+main #buttons .buttons_col1 {
+    float: left;
+    margin-left: 300px;
+}
+
+main #buttons .buttons_col2 {
+    float: right;
+    margin-right: 10px;
+}
+
+

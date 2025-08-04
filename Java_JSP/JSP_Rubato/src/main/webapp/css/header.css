@@ -1,0 +1,50 @@
+/* 상단 헤더 */
+header {
+    /* border: 2px solid green; */
+    height: 100px;
+    position: relative;
+}
+
+header #logo {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+
+header #top_menu {
+    position: absolute;
+    top : 10px;
+    left: 770px;
+}
+
+header #main_menu {
+    /* border: 1px solid red; */
+    width: 757px;
+    height: 38px;
+    background-image: url("../images/main_menu_bg.png");
+    background-repeat: no-repeat; /* 배경 이미지 반복 제거 */
+    position: absolute;
+    top: 40px;
+    left: 200px;
+}
+
+header #main_menu li {
+    display: inline-block; /* margin 적용하려면 inline-block으로 설정 */
+    font-size: 13px;
+    margin: 10px 30px 0 50px;
+}
+
+header #main_menu a:link {
+    text-decoration: none; /* 하이퍼링크 적용된 텍스트의 밑줄 삭제 */
+    color: white;
+}
+
+header #main_menu a:hover {
+    text-decoration: underline; /* 하이퍼링크 적용된 텍스트의 밑줄 출력 */
+    color: white;
+}
+
+header #main_menu a:visited {
+    text-decoration: none; /* 하이퍼링크 적용된 텍스트의 밑줄 삭제 */
+    color: white;
+}
