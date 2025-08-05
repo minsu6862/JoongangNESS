@@ -142,7 +142,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="JSPStudy" path="/JSPStudy" reloadable="true" source="org.eclipse.jst.jee.server:JSPStudy"/><Context docBase="JSPStudy_ch05" path="/JSPStudy_ch05" reloadable="true" source="org.eclipse.jst.jee.server:JSPStudy_ch05"/><Context docBase="JSPStudy_ch06" path="/JSPStudy_ch06" reloadable="true" source="org.eclipse.jst.jee.server:JSPStudy_ch06"/><Context docBase="JSP_Rubato" path="/JSP_Rubato" reloadable="true" source="org.eclipse.jst.jee.server:JSP_Rubato"/></Host>
+      <Context docBase="JSPStudy" path="/JSPStudy" reloadable="true" source="org.eclipse.jst.jee.server:JSPStudy"/><Context docBase="JSPStudy_ch05" path="/JSPStudy_ch05" reloadable="true" source="org.eclipse.jst.jee.server:JSPStudy_ch05"/><Context docBase="JSPStudy_ch06" path="/JSPStudy_ch06" reloadable="true" source="org.eclipse.jst.jee.server:JSPStudy_ch06"/><Context docBase="JSP_Rubato" path="/JSP_Rubato" reloadable="true" source="org.eclipse.jst.jee.server:JSP_Rubato"/><Context docBase="JSPStudy_ch07" path="/JSPStudy_ch07" reloadable="true" source="org.eclipse.jst.jee.server:JSPStudy_ch07"/></Host>
     </Engine>
   </Service>
 </Server>
