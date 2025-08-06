@@ -33,6 +33,12 @@
 	%>
 	<h2>장바구니 목록</h2>
 	<hr>
+	
+	<c:choose>
+		<c:when test="${ empty sessionScope.cartList }">
+			<h2>장바구니가 비어있습니다.</h2>
+		</c:when>
+	</c:choose>
 	<table>
 		<tr>
 			<th>번호</th>

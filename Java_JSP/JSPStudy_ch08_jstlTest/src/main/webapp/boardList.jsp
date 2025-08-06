@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -201,7 +202,17 @@
 		<c:forEach var="boardDto" items="${boardList }">
 			<tr>
 				<td>${boardDto.bnum }</td>
-				<td>${boardDto.btitle }</td>
+				<td>
+				<!-- 게시판 글 제목이 40자 이상일때 40자 이상은 ...표시  -->
+					<c:choose>
+						<c:when test="${fn:length(boardDto.btitle) > 40}">
+							<a href="#">${fn:substring(boardDto.btitle, 0, 40)}...</a>
+						</c:when>
+						<c:otherwise>
+							${boardDto.btitle }
+						</c:otherwise>
+					</c:choose>
+				</td>
 				<td>${boardDto.bwriter }</td>
 				<td>${boardDto.bdate }</td>
 			</tr>
