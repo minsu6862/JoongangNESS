@@ -1,3 +1,5 @@
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Date"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -14,58 +16,75 @@
 	<h2>회원 정보 조회</h2>
 	<hr>
 	<%
-	request.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("utf-8");
 	
-	String sid = request.getParameter("sid");
-	//DB삽입할 데이터 준비 완료
+	String mid = request.getParameter("sid"); //조회할 아이디		
+	//DB에 삽입할 데이터 준비 완료
 	
-	//DB커넥션 준비
-	String driverName = "com.mysql.cj.jdbc.Driver";	//mySQL jdbc 드라이버 이름
-	String url = "jdbc:mysql://localhost:3306/jspdb";	//mySQL이 설치된 서버의 주소(ip)와 연결할 DB(스키마)의 이름
-	//자신컴인 경우 localhost, 남의것인 경우 ip주소
-	
+	//DB 커넥션 준비
+	String driverName = "com.mysql.jdbc.Driver"; //MySQL JDBC 드라이버 이름
+	String url = "jdbc:mysql://localhost:3306/jspdb"; //MySQL이 설치된 서버의 주소(ip)와 연결할 DB(스키마) 이름		
 	String username = "root";
 	String password = "12345";
 	
 	//SQL문 만들기
-	String sql = "SELECT * FROM members WHERE memberid = '" + sid + "'";
-	Connection conn = null;	//커넥션 인터페이스로 선언 후 null로 초기값 설정
-	Statement stmt = null;	//sql문을 관리해주는 객체를 선언해주는 인터페이스 stmt 선언
-	ResultSet rs = null;	//select문 실행시 db에서 반환해주는 record 결과를 받아주는 자료타입 rs 선언
+	//String sql = "SELECT * FROM members WHERE memberid='" + mid + "'";
+	String sql = "SELECT * FROM members WHERE memberid = ?";
+	//String sql = "SELECT * FROM members where memberid='tiger99'";
+	
+	
+	Connection conn = null; //커넥션 인터페이스로 선언 후 null로 초기값 설정
+	//Statement stmt = null; //sql문을 관리해주는 객체를 선언해주는 인터페이스로 stmt 선언
+	PreparedStatement pstmt = null;
+	ResultSet rs = null; //select문 실행 시 DB에서 반환해주는 레코드 결과를 받아주는 자료타입 rs 선언
 	
 	try {
-	    Class.forName(driverName);	//mySQL 드라이버 클래스 불러오기
-	    conn = DriverManager.getConnection(url, username, password);
-	    //커넥션 메모리 생성
-	    stmt = conn.createStatement(); 	//stmt객체 생성
-	    
-		rs = stmt.executeQuery(sql);
-	    
-		if(rs.next()) {
-			String memid = rs.getString("memberid");
-			String mempw = rs.getString("memberpw");
-			String memname = rs.getString("membername");
-			String mememail = rs.getString("memberemail");
-			String memdate = rs.getString("memberdate");
-			
-			out.println("아이디 : " + memid);
-			out.println("비밀번호 : " + mempw);
-			out.println("이름 : " + memname);
-			out.println("이메일 : " + mememail);
-			out.println("등록한 날짜 : " + memdate);
-		} else {
-			out.println("존재하지 않는 회원입니다.");
+		Class.forName(driverName); //MySQL 드라이버 클래스 불러오기			
+		conn = DriverManager.getConnection(url, username, password);
+		//커넥션이 메모리 생성(DB와 연결 커넥션 conn 생성)
+		//stmt = conn.createStatement(); //stmt 객체 생성
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, mid);
+		
+		
+		//int sqlResult = stmt.executeUpdate(sql);
+		rs = pstmt.executeQuery(); 
+		//select문 실행->결과가 DB로부터 반환->그 결과(레코드(행))을 받아 주는 ResultSet 타입 객체로 받아야 함			
+		
+		//String sid = null;
+		
+		if(rs.next()) { //참이면 레코드가 1개 이상 존재->아이디가 존재
+			 do { //rs에서 레코드를 추출하는 방법
+				String sid = rs.getString("memberid");
+				String spw = rs.getString("memberpw");
+				String sname = rs.getString("membername");
+				String semail = rs.getString("memberemail");
+				String sdate = rs.getString("memberdate");
+				
+				out.println("*****조회된 회원 정보*****<br>");
+				out.println(sid + " / " + spw + " / " + sname + " / " + semail + " / " + sdate + "<br>");						
+			} while(rs.next());
+		} else { //거짓이면 레코드가 0개->아이디 존재하지 않음
+			out.println("** 존재하지 않는 회원입니다 **");
 		}
-	    //select문 실행 -> 결과가 DB로부터 반환 -> 그 결과를 받아주는 ResultSet 타입 객체로 받아야함
-	    
-	} catch(Exception e) {
-	    out.println("DB에러 발생 회원조회 실패");
-	    e.printStackTrace();
-	} finally {	//에러 발생 여부와 상관 없이 커넥션 닫기
+		//if(sid == null) {
+			//out.println("** 존재하지 않는 회원입니다 **");
+		//}
+		
+	} catch (Exception e) {
+		out.println("DB 에러 발생! 회원 가입 실패!");
+		e.printStackTrace(); //에러 내용 출력
+	} finally { //에러의 발생여부와 상관 없이 Connection 닫기 실행 
 		try {
-			if (rs != null) rs.close();
-			if (stmt != null) stmt.close(); //stmt가 null이 아니면 닫기(커넥션보다 먼저 닫아줘야함)
-			if (conn != null) conn.close(); //conn null이 아니면 닫기
+			if(rs != null) {
+				rs.close();
+			}				
+			if(pstmt != null) { //stmt가 null 이 아니면 닫기(conn 닫기 보다 먼저 실행)
+				pstmt.close();
+			}				
+			if(conn != null) { //Connection이 null 이 아닐 때만 닫기
+				conn.close();
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
