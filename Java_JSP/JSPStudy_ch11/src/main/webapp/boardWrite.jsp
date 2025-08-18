@@ -9,11 +9,11 @@
 <body>
 	<h2>게시판 글쓰기</h2>
 	<hr>
-	<form action="boardWriteOk.jsp" method="post">
-		글 제목 : <input type="text" name="title" size="50"><br><br>
-		글 내용 : <textarea rows="15" cols="50" name="bcontent"></textarea><br><br>
+	<form action="boardWriteOk.jsp">
+		글제목 : <input type="text" name="btitle" size="50"><br><br>
+		글내용 : <textarea rows="15" cols="50" name="bcontent"></textarea><br><br>
 		글쓴이 : <input type="text" name="memberid"><br><br>
-		<input type="submit" value="등록">
+		<input type="submit" value="글등록">
 	</form>
 </body>
 </html>
