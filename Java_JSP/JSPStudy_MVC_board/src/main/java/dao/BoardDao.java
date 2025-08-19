@@ -20,7 +20,7 @@ public class BoardDao {
 	ResultSet rs = null;
 	
 	public List<BoardDto> boardList() {
-		String sql = "SELECT * FROM board";
+		String sql = "SELECT * FROM board ORDER BY bnum DESC";
 		BoardDto boardDto = new BoardDto();
 		List<BoardDto> bDtos = new ArrayList<BoardDto>();
 		

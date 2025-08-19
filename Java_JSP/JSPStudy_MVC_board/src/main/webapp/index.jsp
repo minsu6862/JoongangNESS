@@ -29,7 +29,7 @@
         최신 글을 확인하거나, 직접 게시글을 작성해보세요.
       </p>
       <div class="hero-actions">
-        <a href="boardList.html" class="btn btn-primary">게시판 바로가기</a>
+        <a href="list.do" class="btn btn-primary">게시판 바로가기</a>
         <a href="#" class="btn btn-outline">소개 보기</a>
       </div>
     </div>

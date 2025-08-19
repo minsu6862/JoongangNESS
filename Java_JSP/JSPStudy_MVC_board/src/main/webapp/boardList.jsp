@@ -14,12 +14,6 @@
   <link rel="stylesheet" href="css/boardStyle.css" />
 </head>
 <body>
-	<%
-	BoardDao bDao = new BoardDao();
-	List<BoardDto> bDtos = bDao.boardList();
-	request.setAttribute("bDtos", bDtos);
-	
-	%>
   	<header class="site-header">
     	<div class="container header-inner">
       	<h1 class="logo">Board</h1>
@@ -39,7 +33,7 @@
           	<input id="q" class="input" type="search" placeholder="제목, 내용, 작성자 검색" />
           	<button class="btn" type="submit">검색</button>
         	</form>
-        	<a class="btn btn-primary" href="#">글쓰기</a>
+        	<a class="btn btn-primary" href="write.do">글쓰기</a>
       	</div>
     	</section>
 
@@ -71,7 +65,7 @@
               	<td class="col-title">
               		<c:choose>
               			<c:when test="${fn:length(bDto.btitle) > 25}">
-              				<a href="#" class="link">${fn:substring(bDto.btitle, 0, 25)}...</a>
+              				<a href="content.do" class="link">${fn:substring(bDto.btitle, 0, 25)}...</a>
               			</c:when>
               			<c:otherwise>
               				<a href="#" class="link">${bDto.btitle}</a>

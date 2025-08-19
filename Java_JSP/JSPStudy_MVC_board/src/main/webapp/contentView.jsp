@@ -46,8 +46,8 @@
       <footer class="post-footer">
         <div class="post-actions">
           <a href="index.html" class="btn btn-outline">목록</a>
-          <a href="#" class="btn">수정</a>
-          <a href="#" class="btn">삭제</a>
+          <a href="modify.do" class="btn">수정</a>
+          <a href="delete.do" class="btn">삭제</a>
         </div>
       </footer>
     </article>
