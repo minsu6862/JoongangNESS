@@ -26,6 +26,8 @@ public class MemberDao {
 	public static final int MEMBER_ID_NONEXISTENT = 0;
 	public static final int MEMBER_DELETE_SUCCESS = 1;
 	public static final int MEMBER_DELETE_FAIL = 0;
+	public static final int MEMBER_UPDATE_SUCCESS = 1;
+	public static final int MEMBER_UPDATE_FAIL = 0;
 	
 	public int insertMember(MemberDto memberDto) { //회원 가입 메서드
 		
@@ -203,5 +205,93 @@ public class MemberDao {
 	        return MEMBER_DELETE_FAIL;
 	    }
 		
+	}
+	
+	public MemberDto getMemberInfo(String memberId) {
+		
+		String sql = "SELECT * FROM membertbl WHERE memberid = ?";
+		MemberDto memberDto = new MemberDto();
+		
+		try {
+			Class.forName(driverName); //MySQL 드라이버 클래스 불러오기			
+			conn = DriverManager.getConnection(url, username, password);
+			//커넥션이 메모리 생성(DB와 연결 커넥션 conn 생성)
+			
+			pstmt = conn.prepareStatement(sql); //pstmt 객체 생성(sql 삽입)
+			pstmt.setString(1, memberId);				
+			
+			rs = pstmt.executeQuery();		
+			
+			if(rs.next()) {
+				memberDto.setMemberid(rs.getString("memberid"));
+				memberDto.setMemberpw(rs.getString("memberpw"));
+				memberDto.setMembername(rs.getString("membername"));
+				memberDto.setMemberage(rs.getInt("memberage"));
+				memberDto.setMemberemail(rs.getString("memberemail"));
+				memberDto.setMemberdate(rs.getString("memberdate"));
+			}
+			
+		} catch (Exception e) {
+			System.out.println("DB 에러 발생! 아이디 존재여부 확인 실패!");
+			e.printStackTrace(); //에러 내용 출력
+		} finally { //에러의 발생여부와 상관 없이 Connection 닫기 실행 
+			try {
+				if(rs != null) { //rs가 null 이 아니면 닫기(stmt 닫기 보다 먼저 실행)
+					rs.close();
+				}				
+				if(pstmt != null) { //stmt가 null 이 아니면 닫기(conn 닫기 보다 먼저 실행)
+					pstmt.close();
+				}				
+				if(conn != null) { //Connection이 null 이 아닐 때만 닫기
+					conn.close();
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return memberDto; //1로 반환되면 아이디 가입 불가, 0으로 반환되면 아이디 가입 가능
+	}
+	
+	public int updateMember(String memberid, String memberpw, String membername, int memberage, String memberemail) {
+		String sql = "UPDATE membertbl SET memberpw = ?, membername = ?, memberage = ?, memberemail = ? WHERE memberid = ?";
+		
+		int sqlResult = 0;
+		
+		try {
+			Class.forName(driverName); //MySQL 드라이버 클래스 불러오기			
+			conn = DriverManager.getConnection(url, username, password);
+			//커넥션이 메모리 생성(DB와 연결 커넥션 conn 생성)
+			
+			pstmt = conn.prepareStatement(sql); //pstmt 객체 생성(sql 삽입)
+			pstmt.setString(1, memberpw);	
+			pstmt.setString(2, membername);	
+			pstmt.setInt(3, memberage);	
+			pstmt.setString(4, memberemail);	
+			pstmt.setString(5, memberid);	
+			
+			sqlResult = pstmt.executeUpdate();; //성공하면 sqlResult 값이 1로 변환
+			// SQL문을 DB에서 실행->성공하면 1이 반환, 실패면 1이 아닌 값 0이 반환
+			
+		} catch (Exception e) {
+			System.out.println("DB 에러 발생! 회원 정보 수정 실패!");
+			e.printStackTrace(); //에러 내용 출력
+		} finally { //에러의 발생여부와 상관 없이 Connection 닫기 실행 
+			try {
+	            // DELETE문에서는 ResultSet을 사용하지 않으므로 rs.close() 불필요
+	            if(pstmt != null) { // stmt가 null 이 아니면 닫기(conn 닫기 보다 먼저 실행)
+	                pstmt.close();
+	            }
+	            if(conn != null) { // Connection이 null 이 아닐 때만 닫기
+	                conn.close();
+	            }
+	        } catch(Exception e) {
+	            e.printStackTrace();
+	        }
+		}
+		if (sqlResult == 1) {
+	        return MEMBER_UPDATE_SUCCESS;	//1
+	    } else {
+	        return MEMBER_UPDATE_FAIL;	//0
+	    }
 	}
 }
