@@ -1,3 +1,4 @@
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Statement"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -28,18 +29,26 @@
 		String password = "12345";
 		
 		//SQL문 만들기
-		String sql = "UPDATE members SET memberpw='"+mpw+"', membername='"+mname+"', memberemail='"+memail+"' WHERE memberid = '"+mid+"'";		
+		//String sql = "UPDATE members SET memberpw='"+mpw+"', membername='"+mname+"', memberemail='"+memail+"' WHERE memberid = '"+mid+"'";
+		String sql = "UPDATE members SET memberpw = ?, membername = ?, memberemail = ? WHERE memberid = ?";
 		
 		Connection conn = null; //커넥션 인터페이스로 선언 후 null로 초기값 설정
-		Statement stmt = null; //sql문을 관리해주는 객체를 선언해주는 인터페이스로 stmt 선언		
+		//Statement stmt = null; //sql문을 관리해주는 객체를 선언해주는 인터페이스로 stmt 선언		
+		PreparedStatement pstmt = null;
 		
 		try {
 			Class.forName(driverName); //MySQL 드라이버 클래스 불러오기			
 			conn = DriverManager.getConnection(url, username, password);
 			//커넥션이 메모리 생성(DB와 연결 커넥션 conn 생성)
-			stmt = conn.createStatement(); //stmt 객체 생성
+			//stmt = conn.createStatement(); //stmt 객체 생성
+			pstmt = conn.prepareStatement(sql);
 			
-			int sqlResult = stmt.executeUpdate(sql); 
+			pstmt.setString(1, mpw);
+			pstmt.setString(2, mname);
+			pstmt.setString(3, memail);
+			pstmt.setString(4, mid);
+			
+			int sqlResult = pstmt.executeUpdate(); 
 			// SQL문을 DB에서 실행->성공하면 1이 반환, 실패면 1이 아닌 값이 반환
 			// System.out.println("sqlResult:"+sqlResult);
 			
@@ -48,8 +57,8 @@
 			e.printStackTrace(); //에러 내용 출력
 		} finally { //에러의 발생여부와 상관 없이 Connection 닫기 실행 
 			try {
-				if(stmt != null) { //stmt가 null 이 아니면 닫기(conn 닫기 보다 먼저 실행)
-					stmt.close();
+				if(pstmt != null) { //stmt가 null 이 아니면 닫기(conn 닫기 보다 먼저 실행)
+					pstmt.close();
 				}				
 				if(conn != null) { //Connection이 null 이 아닐 때만 닫기
 					conn.close();
@@ -113,7 +122,7 @@
 					rs2.close();
 				}				
 				if(stmt2 != null) { //stmt가 null 이 아니면 닫기(conn 닫기 보다 먼저 실행)
-					stmt.close();
+					stmt2.close();
 				}				
 				if(conn2 != null) { //Connection이 null 이 아닐 때만 닫기
 					conn.close();
