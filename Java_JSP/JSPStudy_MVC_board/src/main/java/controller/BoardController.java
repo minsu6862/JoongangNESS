@@ -48,12 +48,25 @@ public class BoardController extends HttpServlet {
 			viewPage = "boardList.jsp";
 		} else if (comm.equals("/write.do")) {
 			viewPage = "writeForm.jsp";
-		} else if (comm.equals("/mofidy.do")) {
+		} else if (comm.equals("/modify.do")) {
 			viewPage = "modifyForm.jsp";
 		} else if (comm.equals("/delete.do")) {
-			viewPage = "boardList.do";
+			viewPage = "list.do";
 		} else if (comm.equals("/content.do")) {
-			viewPage = "contentView.do";
+			String bnum = request.getParameter("bnum");
+			
+			BoardDto bDto = boardDao.ContentView(bnum);
+			request.setAttribute("bDto", bDto);
+			viewPage = "contentView.jsp";
+		} else if (comm.equals("/writeOk.do")) {
+			request.setCharacterEncoding("UTF-8");
+			
+			String memberid = request.getParameter("author");
+			String btitle = request.getParameter("title");
+			String bcontent = request.getParameter("content");
+			
+			boardDao.boardWrite(btitle, bcontent, memberid);
+			viewPage = "list.do";
 		}
 		
 		

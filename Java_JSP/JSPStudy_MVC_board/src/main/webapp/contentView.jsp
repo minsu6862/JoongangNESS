@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -24,28 +26,19 @@
   <main class="container">
     <article class="post-view">
       <header class="post-header">
-        <h2 class="post-title">서버 점검 안내 (8/21 02:00–04:00)</h2>
+        <h2 class="post-title">${bDto.btitle}</h2>
         <div class="post-meta">
-          <span class="writer">관리자</span>
-          <span class="date">2025-08-18</span>
-          <span class="views">조회 1,024</span>
+          <span class="writer">${bDto.memberid}</span>
+          <span class="date">${bDto.bdate}</span>
+          <span class="views">조회 ${bDto.bhit}</span>
         </div>
       </header>
       <div class="post-body">
-        <p>
-          안녕하세요, Clean Board 운영팀입니다.<br />
-          안정적인 서비스 제공을 위해 아래와 같이 서버 점검을 진행합니다.
-        </p>
-        <ul>
-          <li>점검 일시: 2025년 8월 21일 02:00 ~ 04:00</li>
-          <li>점검 내용: 서버 보안 패치 및 성능 최적화</li>
-          <li>영향: 점검 시간 동안 게시판 접속 불가</li>
-        </ul>
-        <p>이용에 불편을 드려 죄송하며, 더 나은 서비스를 위해 최선을 다하겠습니다.</p>
+        ${bDto.bcontent}
       </div>
       <footer class="post-footer">
         <div class="post-actions">
-          <a href="index.html" class="btn btn-outline">목록</a>
+          <a href="list.do" class="btn btn-outline">목록</a>
           <a href="modify.do" class="btn">수정</a>
           <a href="delete.do" class="btn">삭제</a>
         </div>

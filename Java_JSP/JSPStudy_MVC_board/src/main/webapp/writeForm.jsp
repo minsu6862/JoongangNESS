@@ -23,14 +23,18 @@
   <main class="container">
     <section class="post-write">
       <h2 class="section-title">새 글 작성</h2>
-      <form class="write-form">
+      <form class="write-form" action="writeOk.do" method="post">
+      	<div class="form-group">
+          <label for="author">작성자</label>
+          <input id="author" name="author" type="text" class="input full" placeholder="작성자 이름을 입력하세요" />
+        </div>
         <div class="form-group">
           <label for="title">제목</label>
-          <input id="title" type="text" class="input full" placeholder="제목을 입력하세요" />
+          <input id="title" name="title" type="text" class="input full" placeholder="제목을 입력하세요" />
         </div>
         <div class="form-group">
           <label for="content">내용</label>
-          <textarea id="content" class="input textarea full" placeholder="내용을 입력하세요"></textarea>
+          <textarea id="content" name="content" class="input textarea full" placeholder="내용을 입력하세요"></textarea>
         </div>
         <div class="form-group">
           <label for="category">분류</label>
