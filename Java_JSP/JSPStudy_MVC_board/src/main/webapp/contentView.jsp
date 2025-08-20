@@ -40,7 +40,7 @@
         <div class="post-actions">
           <a href="list.do" class="btn btn-outline">목록</a>
           <a href="modify.do" class="btn">수정</a>
-          <a href="delete.do" class="btn">삭제</a>
+          <a href="delete.do?bnum=${bDto.bnum}" class="btn" onclick="return confirm('정말로 이 게시글을 삭제하시겠습니까?')">삭제</a>
         </div>
       </footer>
     </article>

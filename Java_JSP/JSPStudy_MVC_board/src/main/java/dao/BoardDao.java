@@ -103,7 +103,7 @@ public class BoardDao {
 	public BoardDto ContentView(String bnum) {
 		String updateHitSql = "UPDATE board SET bhit = bhit + 1 WHERE bnum = ?";
 		String sql = "SELECT * FROM board WHERE bnum = ?";
-		BoardDto boardDto = new BoardDto();
+		BoardDto boardDto = null;
 		
 		try {
 			Class.forName(driverName); //MySQL 드라이버 클래스 불러오기			
@@ -152,5 +152,78 @@ public class BoardDao {
 			}
 		}
 		return boardDto; //글(bDto) 여러개가 담긴 list인 bDtos를 반환
+	}
+	
+	// 1. 게시글 삭제 메서드
+	public void boardDelete(String bnum) {
+	    String sql = "DELETE FROM board WHERE bnum = ?";
+	    
+	    try {
+	        Class.forName(driverName);
+	        conn = DriverManager.getConnection(url, username, password);
+	        
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, bnum);
+	        pstmt.executeUpdate();
+	        
+	        // 삭제 후 번호 재정렬 호출
+	        reorderBoardNumbers();
+	        
+	    } catch (Exception e) {
+	        System.out.println("DB 에러 발생! 게시글 삭제 실패!");
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if(pstmt != null) pstmt.close();
+	            if(conn != null) conn.close();
+	        } catch(Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
+	
+	// 2. 번호 재정렬 메서드
+	public void reorderBoardNumbers() {
+	    try {
+	        Class.forName(driverName);
+	        conn = DriverManager.getConnection(url, username, password);
+	        
+	        // 임시 테이블 생성 및 데이터 복사
+	        String createTempSql = "CREATE TEMPORARY TABLE temp_board AS " +
+	                              "SELECT btitle, bcontent, memberid, bhit, bdate " +
+	                              "FROM board ORDER BY bnum";
+	        pstmt = conn.prepareStatement(createTempSql);
+	        pstmt.executeUpdate();
+	        pstmt.close();
+	        
+	        // 기존 테이블 비우기
+	        String truncateSql = "TRUNCATE TABLE board";
+	        pstmt = conn.prepareStatement(truncateSql);
+	        pstmt.executeUpdate();
+	        pstmt.close();
+	        
+	        // AUTO_INCREMENT 1로 초기화
+	        String resetAutoSql = "ALTER TABLE board AUTO_INCREMENT = 1";
+	        pstmt = conn.prepareStatement(resetAutoSql);
+	        pstmt.executeUpdate();
+	        pstmt.close();
+	        
+	        // 임시 테이블에서 다시 삽입 (자동으로 1,2,3,4... 순서가 됨)
+	        String insertSql = "INSERT INTO board (btitle, bcontent, memberid, bhit, bdate) " +
+	                          "SELECT btitle, bcontent, memberid, bhit, bdate FROM temp_board";
+	        pstmt = conn.prepareStatement(insertSql);
+	        pstmt.executeUpdate();
+	        
+	    } catch (Exception e) {
+	        System.out.println("DB 에러 발생! 번호 재정렬 실패!");
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if(pstmt != null) pstmt.close();
+	            if(conn != null) conn.close();
+	        } catch(Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
 	}
 }
