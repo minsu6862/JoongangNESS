@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -23,25 +25,19 @@
   <main class="container">
     <section class="post-edit">
       <h2 class="section-title">게시글 수정</h2>
-      <form class="edit-form">
+      
+      <form class="edit-form" action="modifyOk.do" method="post">
+      	<input type="hidden" name="bnum" value="${bDto.bnum}" />
         <div class="form-group">
           <label for="title">제목</label>
-          <input id="title" type="text" class="input full" value="서버 점검 안내 (8/21 02:00–04:00)" />
+          <input id="title" name="title" type="text" class="input full" value="${bDto.btitle}" required/>
         </div>
         <div class="form-group">
           <label for="content">내용</label>
-          <textarea id="content" class="input textarea full">안녕하세요, Clean Board 운영팀입니다.
-안정적인 서비스 제공을 위해 아래와 같이 서버 점검을 진행합니다.
-
-- 점검 일시: 2025년 8월 21일 02:00 ~ 04:00
-- 점검 내용: 서버 보안 패치 및 성능 최적화
-- 영향: 점검 시간 동안 게시판 접속 불가
-
-이용에 불편을 드려 죄송하며, 더 나은 서비스를 위해 최선을 다하겠습니다.
-          </textarea>
+          <textarea id="content" name="content" class="input textarea full" required>${bDto.bcontent}</textarea>
         </div>
         <div class="form-actions">
-          <a href="post.html" class="btn btn-outline">취소</a>
+          <a href="content.do?bnum=${bDto.bnum}" class="btn btn-outline">취소</a>
           <button type="submit" class="btn btn-primary">수정 완료</button>
         </div>
       </form>

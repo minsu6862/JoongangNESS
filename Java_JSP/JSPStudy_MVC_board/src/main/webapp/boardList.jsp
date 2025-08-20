@@ -18,8 +18,13 @@
     	<div class="container header-inner">
       	<h1 class="logo">Board</h1>
       	<nav class="actions">
-        	<a class="btn btn-outline" href="#">로그인</a>
-        	<a class="btn" href="#">회원가입</a>
+        	<c:if test="${not empty sessionScope.sessionId }">
+        		<a class="btn btn-outline" href="#">${sessionScope.sessionId }님</a>
+        	</c:if>
+        	<c:if test="${empty sessionScope.sessionId}">
+        		<a class="btn btn-outline" href="#">로그인</a>
+        		<a class="btn" href="#">회원가입</a>
+    		</c:if>
       	</nav>
     	</div>
   	</header>

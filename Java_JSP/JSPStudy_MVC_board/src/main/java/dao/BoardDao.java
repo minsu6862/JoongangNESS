@@ -226,4 +226,36 @@ public class BoardDao {
 	        }
 	    }
 	}
+	
+	public void boardUpdate(String bnum, String btitle, String bcontent) {
+		String sql = "UPDATE board SET btitle = ?, bcontent = ? WHERE bnum = ?";
+		
+		try {
+			Class.forName(driverName); //MySQL 드라이버 클래스 불러오기			
+			conn = DriverManager.getConnection(url, username, password);
+			//커넥션이 메모리 생성(DB와 연결 커넥션 conn 생성)
+			
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, btitle);
+	        pstmt.setString(2, bcontent);
+	        pstmt.setString(3, bnum);
+	        
+	        pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("DB 에러 발생! 게시판 수정 실패!");
+			e.printStackTrace(); //에러 내용 출력
+		} finally { //에러의 발생여부와 상관 없이 Connection 닫기 실행 
+			try {			
+				if(pstmt != null) { //stmt가 null 이 아니면 닫기(conn 닫기 보다 먼저 실행)
+					pstmt.close();
+				}				
+				if(conn != null) { //Connection이 null 이 아닐 때만 닫기
+					conn.close();
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

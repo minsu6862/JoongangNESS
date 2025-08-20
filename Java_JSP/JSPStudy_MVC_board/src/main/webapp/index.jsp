@@ -14,7 +14,7 @@
     <div class="container header-inner">
       <h1 class="logo">Clean Board</h1>
       <nav class="actions">
-        <a class="btn btn-outline" href="#">로그인</a>
+        <a class="btn btn-outline" href="login.do">로그인</a>
         <a class="btn" href="#">회원가입</a>
       </nav>
     </div>

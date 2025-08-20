@@ -1,0 +1,59 @@
+package dto;
+
+public class MemberDto {
+	private String memberid, memberpw, membername, memberemail, memberdate;
+
+	public MemberDto() {
+		
+	}
+
+	public MemberDto(String memberid, String memberpw, String membername, String memberemail, String memberdate) {
+		this.memberid = memberid;
+		this.memberpw = memberpw;
+		this.membername = membername;
+		this.memberemail = memberemail;
+		this.memberdate = memberdate;
+	}
+
+	public String getMemberid() {
+		return memberid;
+	}
+
+	public void setMemberid(String memberid) {
+		this.memberid = memberid;
+	}
+
+	public String getMemberpw() {
+		return memberpw;
+	}
+
+	public void setMemberpw(String memberpw) {
+		this.memberpw = memberpw;
+	}
+
+	public String getMembername() {
+		return membername;
+	}
+
+	public void setMembername(String membername) {
+		this.membername = membername;
+	}
+
+	public String getMemberemail() {
+		return memberemail;
+	}
+
+	public void setMemberemail(String memberemail) {
+		this.memberemail = memberemail;
+	}
+
+	public String getMemberdate() {
+		return memberdate;
+	}
+
+	public void setMemberdate(String memberdate) {
+		this.memberdate = memberdate;
+	}
+	
+	
+}

@@ -39,8 +39,10 @@
       <footer class="post-footer">
         <div class="post-actions">
           <a href="list.do" class="btn btn-outline">목록</a>
-          <a href="modify.do" class="btn">수정</a>
-          <a href="delete.do?bnum=${bDto.bnum}" class="btn" onclick="return confirm('정말로 이 게시글을 삭제하시겠습니까?')">삭제</a>
+          <c:if test="${sessionScope.sessionId == bDto.memberid }">
+          	<a href="modify.do?bnum=${bDto.bnum}" class="btn">수정</a>
+          	<a href="delete.do?bnum=${bDto.bnum}" class="btn" onclick="return confirm('정말로 이 게시글을 삭제하시겠습니까?')">삭제</a>
+          </c:if>
         </div>
       </footer>
     </article>

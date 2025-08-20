@@ -26,7 +26,7 @@
       <form class="write-form" action="writeOk.do" method="post">
       	<div class="form-group">
           <label for="author">작성자</label>
-          <input id="author" name="author" type="text" class="input full" placeholder="작성자 이름을 입력하세요" />
+          <input id="author" name="author" type="text" class="input full" value="${sessionScope.sessionId }" readonly />
         </div>
         <div class="form-group">
           <label for="title">제목</label>
@@ -45,7 +45,7 @@
           </select>
         </div>
         <div class="form-actions">
-          <a href="index.html" class="btn btn-outline">취소</a>
+          <a href="list.do" class="btn btn-outline">취소</a>
           <button type="submit" class="btn btn-primary">등록</button>
         </div>
       </form>
