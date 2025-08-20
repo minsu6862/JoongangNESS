@@ -59,6 +59,7 @@
               	<th scope="col" class="col-no">번호</th>
               	<th scope="col" class="col-title">제목</th>
               	<th scope="col" class="col-writer">작성자</th>
+              	<th scope="col" class="col-writer">이메일</th>
               	<th scope="col" class="col-date">작성일</th>
               	<th scope="col" class="col-views">조회</th>
             	</tr>
@@ -78,6 +79,7 @@
               		</c:choose>
               	</td>
               	<td class="col-writer">${bDto.memberid}</td>
+              	<td class="col-writer">${bDto.memberDto.memberemail}</td>
               	<td class="col-date">${fn:substring(bDto.bdate, 0, 10)}</td>
               	<td class="col-views">${bDto.bhit}</td>
             	</tr>

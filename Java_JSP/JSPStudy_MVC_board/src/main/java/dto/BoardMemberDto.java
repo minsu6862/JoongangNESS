@@ -1,36 +1,24 @@
 package dto;
 
-public class BoardDto {
+public class BoardMemberDto {
 	private int bnum;
-	private String btitle, bcontent, memberid;
+	private String btitle, bcontent, memberid, memberemail;
 	private int bhit;
 	private String bdate;
 	
-	private MemberDto memberDto;	//회원정보 클래스로 선언한 객체를 멤버 변수 영입
-
-	public BoardDto() {
+	public BoardMemberDto() {
 		
 	}
 
-	public BoardDto(int bnum, String btitle, String bcontent, String memberid, int bhit, String bdate) {
-		super();
+	public BoardMemberDto(int bnum, String btitle, String bcontent, String memberid, String memberemail, int bhit,
+			String bdate) {
 		this.bnum = bnum;
 		this.btitle = btitle;
 		this.bcontent = bcontent;
 		this.memberid = memberid;
+		this.memberemail = memberemail;
 		this.bhit = bhit;
 		this.bdate = bdate;
-	}
-
-	public BoardDto(int bnum, String btitle, String bcontent, String memberid, int bhit, String bdate,
-			MemberDto memberDto) {
-		this.bnum = bnum;
-		this.btitle = btitle;
-		this.bcontent = bcontent;
-		this.memberid = memberid;
-		this.bhit = bhit;
-		this.bdate = bdate;
-		this.memberDto = memberDto;
 	}
 
 	public int getBnum() {
@@ -65,6 +53,14 @@ public class BoardDto {
 		this.memberid = memberid;
 	}
 
+	public String getMemberemail() {
+		return memberemail;
+	}
+
+	public void setMemberemail(String memberemail) {
+		this.memberemail = memberemail;
+	}
+
 	public int getBhit() {
 		return bhit;
 	}
@@ -79,14 +75,6 @@ public class BoardDto {
 
 	public void setBdate(String bdate) {
 		this.bdate = bdate;
-	}
-
-	public MemberDto getMemberDto() {
-		return memberDto;
-	}
-
-	public void setMemberDto(MemberDto member) {
-		this.memberDto = member;
 	}
 	
 	

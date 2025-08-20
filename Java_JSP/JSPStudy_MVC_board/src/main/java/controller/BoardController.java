@@ -15,6 +15,7 @@ import java.util.List;
 import dao.BoardDao;
 import dao.MemberDao;
 import dto.BoardDto;
+import dto.BoardMemberDto;
 
 @WebServlet("*.do")
 public class BoardController extends HttpServlet {
@@ -45,6 +46,7 @@ public class BoardController extends HttpServlet {
 		BoardDao boardDao = new BoardDao();
 		MemberDao memberDao = new MemberDao();
 		List<BoardDto> bDtos = new ArrayList<BoardDto>();
+		List<BoardMemberDto> bmDtos = new ArrayList<BoardMemberDto>();
 		HttpSession session = null;
 		
 		if(comm.equals("/list.do")) {

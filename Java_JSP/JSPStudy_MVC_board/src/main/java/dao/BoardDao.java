@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dto.BoardDto;
+import dto.BoardMemberDto;
+import dto.MemberDto;
 
 public class BoardDao {
 	private String driverName = "com.mysql.jdbc.Driver"; //MySQL JDBC 드라이버 이름
@@ -20,8 +22,11 @@ public class BoardDao {
 	ResultSet rs = null;	
 	
 	public List<BoardDto> boardList() {
-		String sql = "SELECT * FROM board ORDER BY bnum DESC";
-		BoardDto boardDto = new BoardDto();
+		//String sql = "SELECT * FROM board ORDER BY bnum DESC";
+		String sql = "SELECT b.bnum, b.btitle, b.bcontent, b.memberid, " +
+                "COALESCE(m.memberemail, '탈퇴한회원') as memberemail, b.bdate, b.bhit " +
+                "FROM board b LEFT JOIN members m ON b.memberid = m.memberid " +
+                "ORDER BY bnum DESC";
 		List<BoardDto> bDtos = new ArrayList<BoardDto>();
 		
 		try {
@@ -38,10 +43,16 @@ public class BoardDao {
 				String btitle = rs.getString("btitle");
 				String bcontent = rs.getString("bcontent");
 				String memberid = rs.getString("memberid");
+				String memberemail = rs.getString("memberemail");
 				int bhit = rs.getInt("bhit");
 				String bdate = rs.getString("bdate");
 				
-				BoardDto bDto = new BoardDto(bnum, btitle, bcontent, memberid, bhit, bdate);
+				MemberDto memberDto = new MemberDto();
+				memberDto.setMemberid(memberid);
+				memberDto.setMemberemail(memberemail);
+				//BoardDto bDto = new BoardDto(bnum, btitle, bcontent, memberid, bhit, bdate);
+				//BoardMemberDto bmDto = new BoardMemberDto(bnum, btitle, bcontent, memberid, memberemail, bhit, bdate);
+				BoardDto bDto = new BoardDto(bnum, btitle, bcontent, memberid, bhit, bdate, memberDto);
 				bDtos.add(bDto);
 			}
 			
