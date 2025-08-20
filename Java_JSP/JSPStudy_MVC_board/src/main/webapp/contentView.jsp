@@ -29,6 +29,7 @@
         <h2 class="post-title">${bDto.btitle}</h2>
         <div class="post-meta">
           <span class="writer">${bDto.memberid}</span>
+          <span class="col-writer">${bDto.memberDto.memberemail}</span>
           <span class="date">${bDto.bdate}</span>
           <span class="views">조회 ${bDto.bhit}</span>
         </div>

@@ -113,7 +113,7 @@ public class BoardDao {
 	
 	public BoardDto ContentView(String bnum) {
 		String updateHitSql = "UPDATE board SET bhit = bhit + 1 WHERE bnum = ?";
-		String sql = "SELECT * FROM board WHERE bnum = ?";
+		String sql = "SELECT b.bnum, b.btitle, b.bcontent, b.memberid, COALESCE(m.memberemail, '탈퇴한회원') as memberemail, b.bdate, b.bhit FROM board b LEFT JOIN members m ON b.memberid = m.memberid WHERE bnum = ?";
 		BoardDto boardDto = null;
 		
 		try {
@@ -139,9 +139,14 @@ public class BoardDao {
 	            String memberid = rs.getString("memberid");
 	            int bhit = rs.getInt("bhit");
 	            String bdate = rs.getString("bdate");
+	            String memberemail = rs.getString("memberemail");
+	            
+	            MemberDto memberDto = new MemberDto();
+				memberDto.setMemberid(memberid);
+				memberDto.setMemberemail(memberemail);
 	            
 	            // 올바른 순서로 BoardDto 생성
-	            boardDto = new BoardDto(bnumInt, btitle, bcontent, memberid, bhit, bdate);
+	            boardDto = new BoardDto(bnumInt, btitle, bcontent, memberid, bhit, bdate, memberDto);
 	        }
 			
 		} catch (Exception e) {
