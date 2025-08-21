@@ -77,6 +77,82 @@ public class BoardDao {
 		return bDtos; //글(bDto) 여러개가 담긴 list인 bDtos를 반환
 	}
 	
+	//게시글 검색 기능
+	public List<BoardDto> searchBoardList(String searchType, String searchKeyword) {
+		String whereClause = "";
+		
+		// 검색 타입에 따라 WHERE 절 구성
+	    switch(searchType) {
+	        case "title":
+	            whereClause = "WHERE b.btitle LIKE ?";
+	            break;
+	        case "content":
+	            whereClause = "WHERE b.bcontent LIKE ?";
+	            break;
+	        case "writer":
+	            whereClause = "WHERE b.memberid LIKE ?";
+	            break;
+	        default:
+	            whereClause = "WHERE b.btitle LIKE ?";
+	    }
+	    
+		//String sql = "SELECT * FROM board ORDER BY bnum DESC";
+		String sql = "SELECT b.bnum, b.btitle, b.bcontent, b.memberid, " +
+                "COALESCE(m.memberemail, '탈퇴한회원') as memberemail, b.bdate, b.bhit " +
+                "FROM board b LEFT JOIN members m ON b.memberid = m.memberid " +
+                whereClause + " " + 
+                "ORDER BY bnum DESC";
+		List<BoardDto> bDtos = new ArrayList<BoardDto>();
+		
+		try {
+			Class.forName(driverName); //MySQL 드라이버 클래스 불러오기			
+			conn = DriverManager.getConnection(url, username, password);
+			//커넥션이 메모리 생성(DB와 연결 커넥션 conn 생성)
+			
+			pstmt = conn.prepareStatement(sql); //pstmt 객체 생성(sql 삽입)
+			pstmt.setString(1, "%" + searchKeyword + "%");
+			
+			rs = pstmt.executeQuery();		
+			
+			while(rs.next()) {
+				int bnum = rs.getInt("bnum");
+				String btitle = rs.getString("btitle");
+				String bcontent = rs.getString("bcontent");
+				String memberid = rs.getString("memberid");
+				String memberemail = rs.getString("memberemail");
+				int bhit = rs.getInt("bhit");
+				String bdate = rs.getString("bdate");
+				
+				MemberDto memberDto = new MemberDto();
+				memberDto.setMemberid(memberid);
+				memberDto.setMemberemail(memberemail);
+				//BoardDto bDto = new BoardDto(bnum, btitle, bcontent, memberid, bhit, bdate);
+				//BoardMemberDto bmDto = new BoardMemberDto(bnum, btitle, bcontent, memberid, memberemail, bhit, bdate);
+				BoardDto bDto = new BoardDto(bnum, btitle, bcontent, memberid, bhit, bdate, memberDto);
+				bDtos.add(bDto);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("DB 에러 발생! 게시판 목록 불러오기 실패!");
+			e.printStackTrace(); //에러 내용 출력
+		} finally { //에러의 발생여부와 상관 없이 Connection 닫기 실행 
+			try {
+				if(rs != null) { //rs가 null 이 아니면 닫기(stmt 닫기 보다 먼저 실행)
+					rs.close();
+				}				
+				if(pstmt != null) { //stmt가 null 이 아니면 닫기(conn 닫기 보다 먼저 실행)
+					pstmt.close();
+				}				
+				if(conn != null) { //Connection이 null 이 아닐 때만 닫기
+					conn.close();
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return bDtos; //글(bDto) 여러개가 담긴 list인 bDtos를 반환
+	}
+	
 	public void boardWrite(String btitle, String bcontent, String memberid) {
 		String sql ="INSERT INTO board(btitle, bcontent, memberid, bhit) VALUES (?, ?, ?, 0)";
 		

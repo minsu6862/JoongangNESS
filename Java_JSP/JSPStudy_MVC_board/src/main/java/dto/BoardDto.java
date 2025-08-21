@@ -12,16 +12,6 @@ public class BoardDto {
 		
 	}
 
-	public BoardDto(int bnum, String btitle, String bcontent, String memberid, int bhit, String bdate) {
-		super();
-		this.bnum = bnum;
-		this.btitle = btitle;
-		this.bcontent = bcontent;
-		this.memberid = memberid;
-		this.bhit = bhit;
-		this.bdate = bdate;
-	}
-
 	public BoardDto(int bnum, String btitle, String bcontent, String memberid, int bhit, String bdate,
 			MemberDto memberDto) {
 		this.bnum = bnum;

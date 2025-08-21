@@ -50,7 +50,17 @@ public class BoardController extends HttpServlet {
 		HttpSession session = null;
 		
 		if(comm.equals("/list.do")) {
-			bDtos = boardDao.boardList();
+			String searchType = request.getParameter("searchType");
+			String searchKeyword = request.getParameter("searchKeyword");
+			
+			if(searchType != null && searchKeyword != null && !searchKeyword.strip().isEmpty() /*!searchKeyword.trim().isEmpty()*/) {
+		        // 검색 기능 구현
+				bDtos = boardDao.searchBoardList(searchType, searchKeyword);
+		    } else {
+		        // 전체 목록
+		        bDtos = boardDao.boardList();
+		    }
+			
 			request.setAttribute("bDtos", bDtos);
 			viewPage = "boardList.jsp";
 		} else if (comm.equals("/write.do")) {

@@ -33,10 +33,18 @@
     	<section class="board-head">
       	<h2 class="board-title">자유 게시판</h2>
       	<div class="board-tools">
-        	<form class="search" onsubmit="return false;">
-          	<label class="sr-only" for="q">검색</label>
-          	<input id="q" class="input" type="search" placeholder="제목, 내용, 작성자 검색" />
-          	<button class="btn" type="submit">검색</button>
+        	<form class="search" action="list.do" method="get">
+          		<label class="sr-only" for="searchType">검색구분</label>
+  				<select id="searchType" name="searchType" class="select">
+    				<option value="title">제목</option>
+    				<option value="content">내용</option>
+    				<option value="writer">작성자</option>
+  				</select>
+
+  				<label class="sr-only" for="q">검색어</label>
+  				<input id="q" class="input" type="text" name="searchKeyword" placeholder="검색어 입력" />
+
+  				<button class="btn" type="submit">검색</button>
         	</form>
         	<a class="btn btn-primary" href="write.do">글쓰기</a>
       	</div>
@@ -93,9 +101,9 @@
         <a href="#" class="page is-active">1</a>
         <a href="#" class="page">2</a>
         <a href="#" class="page">3</a>
-        <span class="page ellipsis">…</span>
-        <a href="#" class="page">9</a>
-        <a href="#" class="page">10</a>
+        <a href="#" class="page">4</a>
+        <a href="#" class="page">5</a>
+        <!-- <span class="page ellipsis">…</span> -->
         <a href="#" class="page next" aria-label="다음 페이지">›</a>
       </nav>
     </section>

@@ -429,3 +429,55 @@ select.input.full {
   justify-content: flex-end;
   gap: 10px;
 }
+
+/* ===== 검색기능 ===== */
+.search {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.search .select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #fff;
+}
+
+.search .input {
+  flex: 1;
+}
+
+/* 드롭다운(select) 공통 스타일 */
+select.select {
+  padding: 8px 12px !important;
+  border: 1px solid #ccc !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  background: #fff !important;
+  cursor: pointer !important;
+  height: 40px !important;
+  
+  /* 기본 화살표 제거 */
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+
+  /* 커스텀 화살표 */
+  background: #fff url('data:image/svg+xml;utf8,<svg fill="black" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center !important;
+  background-size: 16px !important;
+  padding-right: 32px !important;
+}
+
+/* 검색창(input)과 드롭다운 높이 맞추기 */
+.search .input {
+  height: 40px;
+  font-size: 14px;
+}
+.search .select {
+  height: 40px;
+}
+.search .btn {
+  height: 40px;
+}
