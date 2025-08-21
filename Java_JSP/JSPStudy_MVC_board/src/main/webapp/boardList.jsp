@@ -95,17 +95,47 @@
           	</tbody>
         </table>
 	</div>
-
-      <nav class="pagination" aria-label="페이지네이션">
+	
+	<nav class="pagination" aria-label="페이지네이션">
+        <c:if test="${currentPage > 1 }">
+			<a href="list.do?page=1" class="page prev" aria-label="이전 페이지">‹‹</a>
+		</c:if>
+		<!-- 첫번째 페이지로 이동 화살표 -->
+		<c:if test="${startPage > 1 }">
+			<a href="list.do?page=${startPage - 1 }" class="page prev" aria-label="이전 페이지">‹</a>
+		</c:if>
+	
+		<c:forEach begin="${startPage }" end="${endPage }" var="i">
+			<c:choose>
+				<c:when test="${i == currentPage }">
+					<a href="list.do?page=${i }" class="page is-active">${i }</a> | 
+				</c:when>
+				<c:otherwise>
+					<a href="list.do?page=${i }" class="page">${i }</a> | 
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		<!-- 그룹 이동 화살표 -->
+		<c:if test="${endPage < totalPage }">
+			<a href="list.do?page=${endPage + 1 }" class="page next" aria-label="다음 페이지">›</a>
+		</c:if>
+	
+		<!-- 마지막 페이지로 이동 화살표 -->
+		<c:if test="${currentPage < totalPage }">
+			<a href="list.do?page=${totalPage }"  class="page next" aria-label="다음 페이지">››</a>
+		</c:if>
+     	</nav>
+      
+      <!-- <nav class="pagination" aria-label="페이지네이션">
         <a href="#" class="page prev" aria-label="이전 페이지">‹</a>
         <a href="#" class="page is-active">1</a>
         <a href="#" class="page">2</a>
         <a href="#" class="page">3</a>
         <a href="#" class="page">4</a>
         <a href="#" class="page">5</a>
-        <!-- <span class="page ellipsis">…</span> -->
+        <span class="page ellipsis">…</span>
         <a href="#" class="page next" aria-label="다음 페이지">›</a>
-      </nav>
+      </nav> -->
     </section>
   </main>
 

@@ -9,7 +9,6 @@ import java.util.List;
 
 
 public class BoardDao {
-	
 	private String driverName = "com.mysql.jdbc.Driver"; //MySQL JDBC 드라이버 이름
 	private String url = "jdbc:mysql://localhost:3306/jspdb"; //MySQL이 설치된 서버의 주소(ip)와 연결할 DB(스키마) 이름		
 	private String username = "root";

@@ -19,6 +19,7 @@ import dto.BoardMemberDto;
 
 @WebServlet("*.do")
 public class BoardController extends HttpServlet {
+	private static final int PAGE_GROUP_SIZE = 10;
 	
     public BoardController() {
         super();
@@ -53,16 +54,46 @@ public class BoardController extends HttpServlet {
 			String searchType = request.getParameter("searchType");
 			String searchKeyword = request.getParameter("searchKeyword");
 			
-			if(searchType != null && searchKeyword != null && !searchKeyword.strip().isEmpty() /*!searchKeyword.trim().isEmpty()*/) {
+			//페이징
+			int page = 1;
+			if(request.getParameter("page") != null) {
+				//유저가 보고싶어하는 페이지의 번호
+				page = Integer.parseInt(request.getParameter("page"));
+			}
+			
+			// 검색 여부에 따라 데이터 가져오기
+			if(searchType != null && searchKeyword != null && !searchKeyword.strip().isEmpty()) {
 		        // 검색 기능 구현
 				bDtos = boardDao.searchBoardList(searchType, searchKeyword);
 		    } else {
 		        // 전체 목록
-		        bDtos = boardDao.boardList();
+		        bDtos = boardDao.boardList(page);
 		    }
 			
-			request.setAttribute("bDtos", bDtos);
+			// 페이징 계산
+			int totalBoardCount = boardDao.countBoard();
+			int totalPage = (int) Math.ceil(((double)totalBoardCount / BoardDao.PAGE_SIZE));
+			
+			int startPage = (((page - 1) / PAGE_GROUP_SIZE) * PAGE_GROUP_SIZE) + 1;
+			int endPage = startPage + PAGE_GROUP_SIZE - 1;
+			
+			// endPage가 totalPage를 초과하지 않도록 조정
+			if(endPage > totalPage) {
+				endPage = totalPage;
+			}
+			
+			// 데이터를 JSP로 전달
+			request.setAttribute("bDtos", bDtos);		// JSP에서 사용하는 변수명과 일치
+			request.setAttribute("currentPage", page);	//유저가 선택한 현재 페이지 번호
+			request.setAttribute("totalPage", totalPage);	//전체 글 개수로 계산한 전체 페이지수
+			request.setAttribute("startPage", startPage);
+			request.setAttribute("endPage", endPage);
+			
 			viewPage = "boardList.jsp";
+			/*
+			 * RequestDispatcher dispatcher = request.getRequestDispatcher("boardList.jsp");
+			 * dispatcher.forward(request, response);
+			 */
 		} else if (comm.equals("/write.do")) {
 			session = request.getSession();
 			String sid = (String) session.getAttribute("sessionId");
