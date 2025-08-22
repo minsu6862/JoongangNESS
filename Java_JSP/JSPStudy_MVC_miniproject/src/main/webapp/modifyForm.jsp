@@ -12,14 +12,7 @@
 </head>
 <body>
   <!-- 헤더 -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <h1 class="logo">Clean Board</h1>
-      <nav class="actions">
-        <a class="btn btn-outline" href="#">로그아웃</a>
-      </nav>
-    </div>
-  </header>
+  <%@ include file="include/header.jsp" %>
 
   <!-- 본문 -->
   <main class="container">
@@ -45,10 +38,6 @@
   </main>
 
   <!-- 푸터 -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>© 2025 Clean Board. All rights reserved.</p>
-    </div>
-  </footer>
+  <%@ include file="include/footer.jsp" %>
 </body>
 </html>

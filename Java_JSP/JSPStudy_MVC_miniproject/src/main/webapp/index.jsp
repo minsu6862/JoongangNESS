@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -10,15 +11,7 @@
 </head>
 <body>
   <!-- 헤더 -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <h1 class="logo">Clean Board</h1>
-      <nav class="actions">
-        <a class="btn btn-outline" href="login.do">로그인</a>
-        <a class="btn" href="#">회원가입</a>
-      </nav>
-    </div>
-  </header>
+  <%@ include file="include/header.jsp" %>
 
   <!-- Hero 영역 -->
   <section class="hero">
@@ -66,10 +59,6 @@
   </section>
 
   <!-- 푸터 -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>© 2025 Clean Board. All rights reserved.</p>
-    </div>
-  </footer>
+  <%@ include file="include/footer.jsp" %>
 </body>
 </html>

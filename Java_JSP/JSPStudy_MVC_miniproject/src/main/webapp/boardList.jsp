@@ -14,20 +14,7 @@
   <link rel="stylesheet" href="css/boardStyle.css" />
 </head>
 <body>
-  	<header class="site-header">
-    	<div class="container header-inner">
-      	<h1 class="logo">Board</h1>
-      	<nav class="actions">
-        	<c:if test="${not empty sessionScope.sessionId }">
-        		<a class="btn btn-outline" href="#">${sessionScope.sessionId }님</a>
-        	</c:if>
-        	<c:if test="${empty sessionScope.sessionId}">
-        		<a class="btn btn-outline" href="#">로그인</a>
-        		<a class="btn" href="#">회원가입</a>
-    		</c:if>
-      	</nav>
-    	</div>
-  	</header>
+  	<%@ include file="include/header.jsp" %>
 
   	<main class="container">
     	<section class="board-head">
@@ -141,11 +128,7 @@
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>© 2025 Clean Board. All rights reserved.</p>
-    </div>
-  </footer>
+	<%@ include file="include/footer.jsp" %>
 
   <!-- 모바일에서 표를 카드로 전환하는 접근성용 템플릿 -->
   <template id="row-labels">
