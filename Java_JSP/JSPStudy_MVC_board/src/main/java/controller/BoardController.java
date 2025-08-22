@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import command.*;
 import dao.BoardDao;
 import dao.MemberDao;
 import dto.BoardDto;
@@ -49,6 +50,7 @@ public class BoardController extends HttpServlet {
 		List<BoardDto> bDtos = new ArrayList<BoardDto>();
 		List<BoardMemberDto> bmDtos = new ArrayList<BoardMemberDto>();
 		HttpSession session = null;
+		BCommand bCommand = null;
 		
 		if(comm.equals("/list.do")) {
 			String searchType = request.getParameter("searchType");
@@ -71,6 +73,11 @@ public class BoardController extends HttpServlet {
 				
 				request.setAttribute("searchType", searchType);
 		        request.setAttribute("searchKeyword", searchKeyword);
+		        
+		        if(totalBoardCount == 0) {
+		            request.setAttribute("noSearchResult", true);
+		            request.setAttribute("searchMessage", "'" + searchKeyword + "'에 대한 검색 결과가 없습니다.");
+		        }
 		    } else {
 		        // 전체 목록
 		        bDtos = boardDao.boardList(page);
@@ -86,6 +93,11 @@ public class BoardController extends HttpServlet {
 			// endPage가 totalPage를 초과하지 않도록 조정
 			if(endPage > totalPage) {
 				endPage = totalPage;
+			}
+			
+			// 검색 결과가 없을 때는 현재 페이지를 1로 설정
+			if(totalBoardCount == 0 && page > 1) {
+			    page = 1;
 			}
 			
 			// 데이터를 JSP로 전달
@@ -114,26 +126,19 @@ public class BoardController extends HttpServlet {
 		} else if (comm.equals("/writeOk.do")) {
 			request.setCharacterEncoding("UTF-8");
 			
-			String memberid = request.getParameter("author");
-			String btitle = request.getParameter("title");
-			String bcontent = request.getParameter("content");
+			bCommand = new BWriteCommand();
+			bCommand.excute(request, response);
 			
-			// 입력값 검증
-		    if(btitle != null && !btitle.trim().isEmpty() && 
-		       bcontent != null && !bcontent.trim().isEmpty() && 
-		       memberid != null && !memberid.trim().isEmpty()) {
-		        
-		        // 게시글 작성
-		        boardDao.boardWrite(btitle, bcontent, memberid);
-		        System.out.println("새 게시글 작성 완료: " + btitle);
-		        
-		        // PRG 패턴: 작성 완료 후 목록으로 리다이렉트
+			
+			// Command 실행 결과에 따라 리다이렉트 처리
+		    String writeResult = (String) request.getAttribute("writeResult");
+		    
+		    if("success".equals(writeResult)) {
+		        // 성공 시 목록으로 리다이렉트
 		        response.sendRedirect("list.do");
 		        return;
-		        
 		    } else {
-		        // 입력값이 비어있으면 다시 작성 폼으로
-		        System.out.println("입력값이 비어있음 - 작성 폼으로 돌아감");
+		        // 실패 시 작성 폼으로 리다이렉트  
 		        response.sendRedirect("write.do");
 		        return;
 		    }
@@ -161,13 +166,27 @@ public class BoardController extends HttpServlet {
 		} else if (comm.equals("/modifyOk.do")) {
 			request.setCharacterEncoding("UTF-8");
 			
-			String bnum = request.getParameter("bnum");
-		    String btitle = request.getParameter("title");
-		    String bcontent = request.getParameter("content");
+			// Command 패턴으로 처리
+		    bCommand = new BModifyCommand();
+		    bCommand.excute(request, response);
 		    
-		    boardDao.boardUpdate(bnum, btitle, bcontent);
-		    response.sendRedirect("content.do?bnum=" + bnum);
-		    return;
+		    // Command 실행 결과에 따라 리다이렉트 처리
+		    String modifyResult = (String) request.getAttribute("modifyResult");
+		    String bnum = (String) request.getAttribute("bnum");
+		    
+		    if("success".equals(modifyResult)) {
+		        // 성공 시 해당 게시글 상세보기로 리다이렉트
+		        response.sendRedirect("content.do?bnum=" + bnum);
+		        return;
+		    } else {
+		        // 실패 시 수정 폼으로 리다이렉트 (또는 에러 페이지)
+		        if(bnum != null && !bnum.trim().isEmpty()) {
+		            response.sendRedirect("modify.do?bnum=" + bnum);
+		        } else {
+		            response.sendRedirect("list.do");
+		        }
+		        return;
+		    }
 		} else if (comm.equals("/delete.do")) {
 			String bnum = request.getParameter("bnum");
 		    System.out.println("삭제 요청된 bnum: " + bnum); // 디버깅용
