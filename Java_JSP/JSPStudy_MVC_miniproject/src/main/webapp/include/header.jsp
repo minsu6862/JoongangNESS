@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 <body>
 	<header class="site-header">
     	<div class="container header-inner">
-      	<h1 class="logo">Board</h1>
+      	<h1 class="logo"><a href="main.do">Board</a></h1>
       	<nav class="actions">
         	<c:if test="${not empty sessionScope.sessionId }">
         		<a class="btn btn-outline" href="#">${sessionScope.sessionId }님</a>

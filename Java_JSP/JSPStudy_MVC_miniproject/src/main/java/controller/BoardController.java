@@ -260,6 +260,28 @@ public class BoardController extends HttpServlet {
 				    return;
 				}
 			}
+		} else if(comm.equals("/logout.do")) {
+			session = request.getSession(false);
+		    
+		    // 이전 페이지 URL 가져오기
+		    String referer = request.getHeader("Referer");
+		    
+		    if(session != null) {
+		        String logoutUserId = (String) session.getAttribute("sessionId");
+		        session.invalidate(); // 세션 무효화
+		        System.out.println(logoutUserId + "님 로그아웃 완료");
+		    }
+		    
+		    // 이전 페이지가 있으면 그곳으로, 없으면 메인으로
+		    if(referer != null && !referer.isEmpty() && 
+		       !referer.contains("login.do") && !referer.contains("logout.do")) {
+		        response.sendRedirect(referer);
+		    } else {
+		        response.sendRedirect("index.jsp");
+		    }
+		    return;
+		} else if(comm.equals("/main.do")) {
+			viewPage = "index.jsp";
 		} else {
 			viewPage = "index.jsp";
 		}
