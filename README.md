@@ -9,3 +9,5 @@
 3. JavaScript
 4. GitHub 연동
 5. JAVA - jdk11, jdk17
+6. DataBase - MySQL, Oracle
+7. DB,JSP,JDBC 연결
