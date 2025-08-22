@@ -29,7 +29,7 @@ public class BoardDao {
                 "COALESCE(m.memberemail, '탈퇴한회원') as memberemail, b.bdate, b.bhit " +
                 "FROM board b LEFT JOIN members m ON b.memberid = m.memberid " +
                 "ORDER BY bnum DESC " +
-                "LIMIT 10 OFFSET " + offset;
+                "LIMIT " + PAGE_SIZE + " OFFSET " + offset;
 		List<BoardDto> bDtos = new ArrayList<BoardDto>();
 		
 		try {
@@ -81,7 +81,7 @@ public class BoardDao {
 	}
 	
 	//게시글 검색 기능
-	public List<BoardDto> searchBoardList(String searchType, String searchKeyword) {
+	public List<BoardDto> searchBoardList(String searchType, String searchKeyword, int page) {
 		String whereClause = "";
 		
 		// 검색 타입에 따라 WHERE 절 구성
@@ -99,12 +99,16 @@ public class BoardDao {
 	            whereClause = "WHERE b.btitle LIKE ?";
 	    }
 	    
+	    // 페이징 계산 추가
+	    int offset = (page - 1) * PAGE_SIZE;
+	    
 		//String sql = "SELECT * FROM board ORDER BY bnum DESC";
 		String sql = "SELECT b.bnum, b.btitle, b.bcontent, b.memberid, " +
                 "COALESCE(m.memberemail, '탈퇴한회원') as memberemail, b.bdate, b.bhit " +
                 "FROM board b LEFT JOIN members m ON b.memberid = m.memberid " +
                 whereClause + " " + 
-                "ORDER BY bnum DESC";
+                "ORDER BY bnum DESC " +
+                "LIMIT " + PAGE_SIZE + " OFFSET " + offset;
 		List<BoardDto> bDtos = new ArrayList<BoardDto>();
 		
 		try {
@@ -392,5 +396,55 @@ public class BoardDao {
 			}
 		}
 		return count; //글(bDto) 여러개가 담긴 list인 bDtos를 반환
+	}
+	
+	//검색 결과 게시글 갯수 조회 메서드
+	public int countSearchBoard(String searchType, String searchKeyword) {
+	    String whereClause = "";
+	    
+	    // 검색 타입에 따라 WHERE 절 구성
+	    switch(searchType) {
+	        case "title":
+	            whereClause = "WHERE b.btitle LIKE ?";
+	            break;
+	        case "content":
+	            whereClause = "WHERE b.bcontent LIKE ?";
+	            break;
+	        case "writer":
+	            whereClause = "WHERE b.memberid LIKE ?";
+	            break;
+	        default:
+	            whereClause = "WHERE b.btitle LIKE ?";
+	    }
+	    
+	    String sql = "SELECT COUNT(*) FROM board b LEFT JOIN members m ON b.memberid = m.memberid " + whereClause;
+	    int count = 0;
+	    
+	    try {
+	        Class.forName(driverName);
+	        conn = DriverManager.getConnection(url, username, password);
+	        
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, "%" + searchKeyword + "%");
+	        
+	        rs = pstmt.executeQuery();
+	        
+	        if(rs.next()) {
+	            count = rs.getInt(1);
+	        }
+	        
+	    } catch (Exception e) {
+	        System.out.println("DB 에러 발생! 검색 게시글 수 조회 실패!");
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if(rs != null) rs.close();
+	            if(pstmt != null) pstmt.close();
+	            if(conn != null) conn.close();
+	        } catch(Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return count;
 	}
 }

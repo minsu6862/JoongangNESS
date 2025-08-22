@@ -33,7 +33,21 @@
     	<section class="board-head">
       	<h2 class="board-title">자유 게시판</h2>
       	<div class="board-tools">
-        	<form class="search" action="list.do" method="get">
+      		<!-- 검색 폼의 선택값 유지를 위한 수정 -->
+			<form class="search" action="list.do" method="get">
+    			<label class="sr-only" for="searchType">검색구분</label>
+    			<select id="searchType" name="searchType" class="select">
+        			<option value="title" <c:if test="${searchType == 'title'}">selected</c:if>>제목</option>
+        			<option value="content" <c:if test="${searchType == 'content'}">selected</c:if>>내용</option>
+        			<option value="writer" <c:if test="${searchType == 'writer'}">selected</c:if>>작성자</option>
+    			</select>
+
+    			<label class="sr-only" for="q">검색어</label>
+    			<input id="q" class="input" type="text" name="searchKeyword" placeholder="검색어 입력" value="${searchKeyword}" />
+
+    			<button class="btn" type="submit">검색</button>
+			</form>
+        	<!-- <form class="search" action="list.do" method="get">
           		<label class="sr-only" for="searchType">검색구분</label>
   				<select id="searchType" name="searchType" class="select">
     				<option value="title">제목</option>
@@ -45,10 +59,10 @@
   				<input id="q" class="input" type="text" name="searchKeyword" placeholder="검색어 입력" />
 
   				<button class="btn" type="submit">검색</button>
-        	</form>
+        	</form> -->
         	<a class="btn btn-primary" href="write.do">글쓰기</a>
       	</div>
-    	</section>
+    </section>
 
     <section class="board-list">
       <div class="list-meta">
@@ -96,46 +110,36 @@
         </table>
 	</div>
 	
+	<!-- 페이징 네비게이션 -->
 	<nav class="pagination" aria-label="페이지네이션">
-        <c:if test="${currentPage > 1 }">
-			<a href="list.do?page=1" class="page prev" aria-label="이전 페이지">‹‹</a>
-		</c:if>
-		<!-- 첫번째 페이지로 이동 화살표 -->
-		<c:if test="${startPage > 1 }">
-			<a href="list.do?page=${startPage - 1 }" class="page prev" aria-label="이전 페이지">‹</a>
-		</c:if>
-	
-		<c:forEach begin="${startPage }" end="${endPage }" var="i">
-			<c:choose>
-				<c:when test="${i == currentPage }">
-					<a href="list.do?page=${i }" class="page is-active">${i }</a> | 
-				</c:when>
-				<c:otherwise>
-					<a href="list.do?page=${i }" class="page">${i }</a> | 
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
-		<!-- 그룹 이동 화살표 -->
-		<c:if test="${endPage < totalPage }">
-			<a href="list.do?page=${endPage + 1 }" class="page next" aria-label="다음 페이지">›</a>
-		</c:if>
-	
-		<!-- 마지막 페이지로 이동 화살표 -->
-		<c:if test="${currentPage < totalPage }">
-			<a href="list.do?page=${totalPage }"  class="page next" aria-label="다음 페이지">››</a>
-		</c:if>
-     	</nav>
-      
-      <!-- <nav class="pagination" aria-label="페이지네이션">
-        <a href="#" class="page prev" aria-label="이전 페이지">‹</a>
-        <a href="#" class="page is-active">1</a>
-        <a href="#" class="page">2</a>
-        <a href="#" class="page">3</a>
-        <a href="#" class="page">4</a>
-        <a href="#" class="page">5</a>
-        <span class="page ellipsis">…</span>
-        <a href="#" class="page next" aria-label="다음 페이지">›</a>
-      </nav> -->
+    	<c:if test="${currentPage > 1}">
+        	<a href="list.do?page=1<c:if test='${not empty searchType and not empty searchKeyword}'>&searchType=${searchType}&searchKeyword=${searchKeyword}</c:if>" class="page prev" aria-label="이전 페이지">‹‹</a>
+    	</c:if>
+    	<!-- 첫번째 페이지로 이동 화살표 -->
+    	<c:if test="${startPage > 1}">
+        	<a href="list.do?page=${startPage - 1}<c:if test='${not empty searchType and not empty searchKeyword}'>&searchType=${searchType}&searchKeyword=${searchKeyword}</c:if>" class="page prev" aria-label="이전 페이지">‹</a>
+    	</c:if>
+
+    	<c:forEach begin="${startPage}" end="${endPage}" var="i">
+        	<c:choose>
+            	<c:when test="${i == currentPage}">
+                	<a href="list.do?page=${i}<c:if test='${not empty searchType and not empty searchKeyword}'>&searchType=${searchType}&searchKeyword=${searchKeyword}</c:if>" class="page is-active">${i}</a> | 
+            	</c:when>
+            	<c:otherwise>
+                	<a href="list.do?page=${i}<c:if test='${not empty searchType and not empty searchKeyword}'>&searchType=${searchType}&searchKeyword=${searchKeyword}</c:if>" class="page">${i}</a> | 
+            	</c:otherwise>
+        	</c:choose>
+    	</c:forEach>
+    	<!-- 그룹 이동 화살표 -->
+    	<c:if test="${endPage < totalPage}">
+        	<a href="list.do?page=${endPage + 1}<c:if test='${not empty searchType and not empty searchKeyword}'>&searchType=${searchType}&searchKeyword=${searchKeyword}</c:if>" class="page next" aria-label="다음 페이지">›</a>
+    	</c:if>
+
+    	<!-- 마지막 페이지로 이동 화살표 -->
+    	<c:if test="${currentPage < totalPage}">
+        	<a href="list.do?page=${totalPage}<c:if test='${not empty searchType and not empty searchKeyword}'>&searchType=${searchType}&searchKeyword=${searchKeyword}</c:if>" class="page next" aria-label="다음 페이지">››</a>
+    	</c:if>
+	</nav>
     </section>
   </main>
 

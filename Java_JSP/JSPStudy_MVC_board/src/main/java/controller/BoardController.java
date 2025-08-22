@@ -61,17 +61,23 @@ public class BoardController extends HttpServlet {
 				page = Integer.parseInt(request.getParameter("page"));
 			}
 			
+			int totalBoardCount = 0;  // 전체 게시글 수를 저장할 변수
+			
 			// 검색 여부에 따라 데이터 가져오기
 			if(searchType != null && searchKeyword != null && !searchKeyword.strip().isEmpty()) {
 		        // 검색 기능 구현
-				bDtos = boardDao.searchBoardList(searchType, searchKeyword);
+				bDtos = boardDao.searchBoardList(searchType, searchKeyword, page);
+				totalBoardCount = boardDao.countSearchBoard(searchType, searchKeyword);  // 검색 결과 총 개수
+				
+				request.setAttribute("searchType", searchType);
+		        request.setAttribute("searchKeyword", searchKeyword);
 		    } else {
 		        // 전체 목록
 		        bDtos = boardDao.boardList(page);
+		        totalBoardCount = boardDao.countBoard();
 		    }
 			
 			// 페이징 계산
-			int totalBoardCount = boardDao.countBoard();
 			int totalPage = (int) Math.ceil(((double)totalBoardCount / BoardDao.PAGE_SIZE));
 			
 			int startPage = (((page - 1) / PAGE_GROUP_SIZE) * PAGE_GROUP_SIZE) + 1;
