@@ -10,10 +10,10 @@
 <body>
 	<header class="site-header">
     	<div class="container header-inner">
-      	<h1 class="logo"><a href="main.do">Board</a></h1>
+      	<h1 class="logo"><a href="main.do">WebSolution</a></h1>
       	<nav class="actions">
         	<c:if test="${not empty sessionScope.sessionId }">
-        		<a class="btn btn-outline" href="#">${sessionScope.sessionId }님</a>
+        		<a class="btn btn-outline" href="myPage.do?memberId=${sessionScope.sessionId }">${sessionScope.sessionId }님</a>
         		<a class="btn btn-outline" href="logout.do">로그아웃</a>
         	</c:if>
         	<c:if test="${empty sessionScope.sessionId}">

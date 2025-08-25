@@ -17,6 +17,7 @@ import dao.BoardDao;
 import dao.MemberDao;
 import dto.BoardDto;
 import dto.BoardMemberDto;
+import dto.MemberDto;
 
 @WebServlet("*.do")
 public class BoardController extends HttpServlet {
@@ -282,6 +283,94 @@ public class BoardController extends HttpServlet {
 		    return;
 		} else if(comm.equals("/main.do")) {
 			viewPage = "index.jsp";
+		} else if(comm.equals("/myPage.do")) {
+			// 로그인 상태 확인
+		    session = request.getSession();
+		    String sessionId = (String) session.getAttribute("sessionId");
+		    
+		    if(sessionId == null) {	// 로그인하지 않은 상태라면 로그인 페이지로
+		        response.sendRedirect("login.do?msg=2");
+		        return;
+		    }
+		    
+		    // URL 파라미터로 받은 memberId와 세션의 sessionId 비교
+		    String memberId = request.getParameter("memberId");
+		    if(memberId == null) {
+		        memberId = sessionId;
+		    }
+		    
+		    // 본인 확인
+		    if(!sessionId.equals(memberId)) {
+		        response.sendRedirect("list.do");
+		        return;
+		    }
+		    
+			MemberDto memberDto = memberDao.MyPageView(memberId);
+			
+			if(memberDto == null) {
+				// 데이터를 못 가져온 경우 이전 페이지로 돌아가기
+		        String referer = request.getHeader("Referer");
+		        if(referer != null && !referer.isEmpty() && 
+		           !referer.contains("myPage.do")) {
+		            response.sendRedirect(referer);
+		        } else {
+		            response.sendRedirect("list.do");  // 기본값
+		        }
+		        return;
+			} else {
+				request.setAttribute("memberDto", memberDto);
+				viewPage = "myPage.jsp";
+			}
+		} else if(comm.equals("/updateMember.do")) {
+			request.setCharacterEncoding("UTF-8");
+			
+			// 로그인 상태 확인
+		    session = request.getSession();
+		    String sessionId = (String) session.getAttribute("sessionId");
+		    
+		    if(sessionId == null) {
+		        response.sendRedirect("login.do?msg=2");
+		        return;
+		    }
+			
+			String memberId = request.getParameter("memberId");
+			String memberPw = request.getParameter("memberPw");
+			String memberName = request.getParameter("memberName");
+			String memberEmail = request.getParameter("memberEmail");
+			
+			// 입력값 검증
+		    if (memberId == null || memberId.trim().isEmpty() || 
+		        memberPw == null || memberPw.trim().isEmpty() || 
+		        memberName == null || memberName.trim().isEmpty() || 
+		        memberEmail == null || memberEmail.trim().isEmpty()) {
+		        
+		        System.out.println("입력값이 비어있음 - 수정 실패");
+		        response.sendRedirect("myPage.do?memberId=" + memberId + "&msg=3");
+		        return;
+		    }
+		    
+		    // 비밀번호 확인
+		    int loginFlag = memberDao.loginCheck(memberId, memberPw);
+
+		    if (loginFlag == 1) {	// 비밀번호가 맞으면 회원정보 수정 실행
+		        int updateResult = memberDao.memberUpdate(memberId, memberPw, memberName, memberEmail);
+		        
+		        if(updateResult > 0) {
+		            System.out.println(memberId + "님 회원정보 수정 완료");
+		            response.sendRedirect("myPage.do?msg=1");
+		        } else {
+		            System.out.println(memberId + "님 회원정보 수정 실패 - DB 업데이트 오류");
+		            response.sendRedirect("myPage.do?msg=2");
+		        }
+		        return;
+		        
+		    } else {
+		        // 비밀번호가 틀렸을 때
+		        System.out.println("비밀번호 틀림 - 수정 실패");
+		        response.sendRedirect("myPage.do?msg=4");
+		        return;
+		    }
+			
 		} else {
 			viewPage = "index.jsp";
 		}

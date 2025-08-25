@@ -447,4 +447,5 @@ public class BoardDao {
 	    }
 	    return count;
 	}
+	
 }
