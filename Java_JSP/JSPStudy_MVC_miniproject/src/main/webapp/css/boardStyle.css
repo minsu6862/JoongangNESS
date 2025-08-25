@@ -73,6 +73,10 @@ body {
   background: transparent; color: var(--primary); border-color: var(--line);
   box-shadow: none;
 }
+.signup-bt {
+  background: #fff; color: var(--primary); border-color: var(--line);
+  box-shadow: none;
+}
 .btn-primary { background: var(--accent); border-color: var(--accent); }
 .input {
   height: 40px; padding: 0 12px; border-radius: 12px;
@@ -217,20 +221,44 @@ body {
 
 /* ===== Hero 영역 ===== */
 .hero {
-  background: linear-gradient(135deg, #f9fafb, #f1f5f9);
-  padding: 80px 20px;
+  position: relative;
+  width: 100%;
+  height: 600px; /* 높이는 필요에 따라 조절 가능 */
+  background: url('../img/cityImage.jpg') no-repeat center center/cover; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  color: #fff;
 }
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.35); /* 어둡게 오버레이 */
+}
+
+.hero-title, .hero-desc {
+  position: relative;
+  z-index: 1; /* 오버레이 위에 표시되도록 */
+}
+
 .hero-title {
-  font-size: 32px;
-  margin: 0 0 16px;
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0 0 12px;
 }
+
 .hero-desc {
   font-size: 18px;
-  color: var(--muted);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
+  color: #e5e7eb;
 }
 .hero-actions {
+  position: relative;
+  z-index: 1;
   display: flex;
   gap: 12px;
   justify-content: center;
