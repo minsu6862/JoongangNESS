@@ -12,6 +12,11 @@ public class BoardDto {
 		
 	}
 
+	public BoardDto(int bnum, String btitle) {
+		this.bnum = bnum;
+		this.btitle = btitle;
+	}
+
 	public BoardDto(int bnum, String btitle, String bcontent, String memberid, int bhit, String bdate,
 			MemberDto memberDto) {
 		this.bnum = bnum;

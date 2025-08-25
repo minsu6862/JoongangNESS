@@ -21,6 +21,7 @@ public class BoardDao {
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	public static final int PAGE_SIZE = 10;
+	public static final int MAIN_PAGE_SIZE = 3;
 	
 	public List<BoardDto> boardList(int page) {
 		//String sql = "SELECT * FROM board ORDER BY bnum DESC";
@@ -446,6 +447,49 @@ public class BoardDao {
 	        }
 	    }
 	    return count;
+	}
+	
+	//메인페이지 최근글 알림
+	public List<BoardDto> mainList() {
+		String sql = "SELECT * FROM board ORDER BY bnum DESC LIMIT " + MAIN_PAGE_SIZE;
+		
+		List<BoardDto> bDtos = new ArrayList<BoardDto>();
+		
+		try {
+			Class.forName(driverName); //MySQL 드라이버 클래스 불러오기			
+			conn = DriverManager.getConnection(url, username, password);
+			//커넥션이 메모리 생성(DB와 연결 커넥션 conn 생성)
+			
+			pstmt = conn.prepareStatement(sql); //pstmt 객체 생성(sql 삽입)
+			
+			rs = pstmt.executeQuery();		
+			
+			while(rs.next()) {
+				int bnum = rs.getInt("bnum");
+				String btitle = rs.getString("btitle");
+				BoardDto bDto = new BoardDto(bnum, btitle);
+				bDtos.add(bDto);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("DB 에러 발생! 게시판 목록 불러오기 실패!");
+			e.printStackTrace(); //에러 내용 출력
+		} finally { //에러의 발생여부와 상관 없이 Connection 닫기 실행 
+			try {
+				if(rs != null) { //rs가 null 이 아니면 닫기(stmt 닫기 보다 먼저 실행)
+					rs.close();
+				}				
+				if(pstmt != null) { //stmt가 null 이 아니면 닫기(conn 닫기 보다 먼저 실행)
+					pstmt.close();
+				}				
+				if(conn != null) { //Connection이 null 이 아닐 때만 닫기
+					conn.close();
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return bDtos; //글(bDto) 여러개가 담긴 list인 bDtos를 반환
 	}
 	
 }

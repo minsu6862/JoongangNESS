@@ -282,6 +282,9 @@ public class BoardController extends HttpServlet {
 		    }
 		    return;
 		} else if(comm.equals("/main.do")) {
+			bDtos = boardDao.mainList();
+	        request.setAttribute("bDtos", bDtos);
+			
 			viewPage = "index.jsp";
 		} else if(comm.equals("/myPage.do")) {
 			// 로그인 상태 확인

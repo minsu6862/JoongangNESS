@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -50,12 +51,19 @@
   <!-- 최근 글 -->
   <section class="latest-posts container">
     <h3 class="section-title">Notice & News</h3>
-    <ul class="post-list">
-      <li><a href="#">[공지] 추석 연휴 고객센터 운영 안내</a></li>
-      <li><a href="#">신규 프로젝트 론칭 소식</a></li>
-      <li><a href="#">Clean Corp 채용 공고</a></li>
-    </ul>
-    <div class="more"><a href="index.html" class="btn btn-outline">전체 보기</a></div>
+    <c:forEach items="${bDtos}" var="bDto">
+    	<ul class="post-list">
+    		<c:choose>
+    			<c:when test="${fn:length(bDto.btitle) > 25 }">
+    				<li><a href="content.do?bnum=${bDto.bnum}">${fn:substring(bDto.btitle, 0, 25)}...</a></li>
+    			</c:when>
+    			<c:otherwise>
+    				<li><a href="content.do?bnum=${bDto.bnum}">${bDto.btitle}</a></li>
+    			</c:otherwise>
+      		</c:choose>
+    	</ul>
+    </c:forEach>
+    <div class="more"><a href="list.do" class="btn btn-outline">전체 보기</a></div>
   </section>
 
   <!-- 푸터 -->

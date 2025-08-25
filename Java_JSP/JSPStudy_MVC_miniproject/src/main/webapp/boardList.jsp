@@ -18,7 +18,7 @@
 
   	<main class="container">
     	<section class="board-head">
-      	<h2 class="board-title">자유 게시판</h2>
+      	<h2 class="board-title">공지사항</h2>
       	<div class="board-tools">
       		<!-- 검색 폼의 선택값 유지를 위한 수정 -->
 			<form class="search" action="list.do" method="get">
