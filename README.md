@@ -11,3 +11,5 @@
 5. JAVA - jdk11, jdk17
 6. DataBase - MySQL, Oracle
 7. DB,JSP,JDBC 연결
+8. Mini Project - JDK17 (2025-08-22 ~ 2025-08-25)
+9. SpringFramework
