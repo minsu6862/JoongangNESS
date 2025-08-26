@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Calculator 클래스로 calculator 객체 생성 -->
+	<bean id="cal" class="com.minsu.test.Calculator" ></bean>	
+	
+	<!-- MyCalculator 클래스로 myCalculator 객체 생성 -->
+	<bean id="myCalculator" class="com.minsu.test.MyCalc">
+		<property name="a" value="10"></property>
+		<property name="b" value="5"></property>
+		<property name="calculator">
+			<ref bean="cal" />
+		</property>
+	</bean>
+	
+	<!-- setter를 이용한 객체 초기화 -->
+	<bean id="studentDto1" class="com.minsu.test.StudentDto">
+		<property name="name" value="홍길동"></property>
+		<property name="age" value="17"></property>
+		<property name="gradeNum" value="4"></property>
+		<property name="classNum" value="5"></property>
+	</bean>
+	
+	<!-- 생성자를 이용한 객체 초기화 -->
+	<bean id="studentDto2" class="com.minsu.test.StudentDto">
+		<constructor-arg>
+			<value>이순신</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>20</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>3</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>7</value>
+		</constructor-arg>
+	</bean>
+	
+	<!-- 생성자로 객체 초기화 -->
+	<bean id="studentInfo1" class="com.minsu.test.StudentInfo">
+		<constructor-arg>
+			<ref bean="studentDto1"/>
+		</constructor-arg>
+	</bean>
+	
+	
+	<!-- setter로 객체 초기화 -->
+	<bean id="studentInfo2" class="com.minsu.test.StudentInfo">
+		<property name="studentDto">
+			<ref bean="studentDto2"/>
+		</property>
+	</bean>
+</beans>
