@@ -1,5 +1,7 @@
 package com.minsu.member.validation;
 
+import java.util.Objects;
+
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -33,9 +35,18 @@ public class MemberValidator implements Validator {
 			errors.rejectValue("id", "id.short", "아이디는 5자 이상이어야 합니다.");
 		}
 		
+		//비밀번호의 길이가 5자 이상인지 확인
+		if(password != null && id.length() < 5) {	//조건이 참이면 에러
+			errors.rejectValue("password", "password.short", "비밀번호는 5자 이상이어야 합니다.");
+		}
+		
 		//비밀번호 확인(confirmPassword 일치 여부)
 		if(!password.equals(confirmPassword)) {
 			errors.rejectValue("confirmPassword", "id.mismatch", "비밀번호 확인이 일치하지 않습니다.");
+		}
+		
+		if (Objects.isNull(age) || age < 18) {
+		    errors.rejectValue("age", "age.mismatch", "나이가 18세 이상만 가능합니다.");
 		}
 		
 	}
