@@ -28,7 +28,12 @@ public class MemberValidator implements Validator {
 		String confirmPassword = memberDto.getConfirmPassword();
 		
 		//아이디가 공란인지 확인
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "id", "id.empty", "아이디는 필수 입력 사항입니다.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "id", "id.empty","아이디는 필수 입력사항입니다.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password.empty","비밀번호는 필수 입력사항입니다.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "name.empty","이름은 필수 입력사항입니다.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "age", "age.empty","나이는 필수 입력사항입니다.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confirmPassword", "confirmPassword.empty","비밀번호 확인은 필수 입력사항입니다.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "email.empty","이메일은 필수 입력사항입니다.");
 		
 		//아이디의 길이가 5자 이상인지 확인
 		if(id != null && id.length() < 5) {	//조건이 참이면 에러

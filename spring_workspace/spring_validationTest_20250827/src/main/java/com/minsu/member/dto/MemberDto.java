@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class MemberDto {
 	private String id, password, confirmPassword, name, email;
-	private int age;
+	private Integer age;
 	
 	
 }
