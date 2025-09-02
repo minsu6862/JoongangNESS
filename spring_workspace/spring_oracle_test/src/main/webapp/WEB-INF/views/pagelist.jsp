@@ -122,20 +122,24 @@
     </table>
 
     <div class="pagination">
-      <a href="#">&laquo;</a>
-      <a href="#">&lsaquo;</a>
-      <c:forEach var="i" begin="${startPage }" end="${endPage }">
-      	<c:choose>
-      		<c:when test="${i == pageNum}">
-      			<a href="pagelist?pageNum=${i}" class="active">${i}</a>
-      		</c:when>
-      		<c:otherwise>
-      			<a href="pagelist?pageNum=${i}">${i}</a>
-      		</c:otherwise>
-      	</c:choose>
-      </c:forEach>
-      <a href="#">&rsaquo;</a>
-      <a href="#">&raquo;</a>
+    	<c:if test="${pageNum > 1 }">
+      		<a href="pagelist?pageNum=1">&laquo;</a>
+      		<a href="pagelist?pageNum=${startPage-1}">&lsaquo;</a>
+      	</c:if>
+      	<c:forEach var="i" begin="${startPage }" end="${endPage }">
+      		<c:choose>
+      			<c:when test="${i == pageNum}">
+      				<a href="pagelist?pageNum=${i}" class="active">${i}</a>
+      			</c:when>
+      			<c:otherwise>
+      				<a href="pagelist?pageNum=${i}">${i}</a>
+      			</c:otherwise>
+      		</c:choose>
+      	</c:forEach>
+      	<c:if test="${pageNum < totalPage }">
+      		<a href="pagelist?pageNum=${endPage+1}">&rsaquo;</a>
+      		<a href="pagelist?pageNum=${totalPage}">&raquo;</a>
+      	</c:if>
     </div>
   </div>
 

@@ -159,7 +159,8 @@ public class BoardController {
 		model.addAttribute("boardList", boardDtos);
 		model.addAttribute("pageNum", pageNum);	//유저가 클릭한 페이지 번호 -> 현재 페이지
 		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage); 
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("totalPage", totalPage);
 		
 		model.addAttribute("boardCount", boardDao.AllBoardCountDao()); //모든 글 갯수 전달하기
 		
