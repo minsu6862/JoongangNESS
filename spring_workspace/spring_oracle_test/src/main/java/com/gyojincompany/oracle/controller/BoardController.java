@@ -167,4 +167,17 @@ public class BoardController {
 		return "pagelist";
 	}
 	
+	@RequestMapping(value = "/test")
+	public String test() {
+		
+		return "test";
+	}
+	
+	@RequestMapping(value = "/kakaomap")
+	public String kakaomap() {
+		
+		return "mapTest";
+	}
+	
+	
 }
