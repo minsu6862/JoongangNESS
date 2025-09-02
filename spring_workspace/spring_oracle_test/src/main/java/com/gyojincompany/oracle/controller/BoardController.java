@@ -17,6 +17,9 @@ import com.gyojincompany.oracle.dto.BoardDto;
 @Controller
 public class BoardController {
 	
+	static final int PAGE_SIZE = 10;	//한페이지당 표시할 게시글 수
+	static final int BLOCK_SIZE = 5;	//페이지 블럭에 표시될 페이지의 수
+	
 	@Autowired
 	private SqlSession sqlSession;
 	
@@ -94,5 +97,73 @@ public class BoardController {
 		return "alert/alert";
 	}
 	
+	@RequestMapping(value = "/contentview")
+	public String contentview(HttpServletRequest request, Model model) {
+		
+		String bnum = request.getParameter("bnum"); //유저가 클릭한 글의 번호
+		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+		
+		boardDao.updateHitDao(bnum); //조회수 증가함수 호출
+		//메서드 호출 순서 주의
+		BoardDto boardDto = boardDao.contentViewDao(bnum);
+		
+		model.addAttribute("boardDto", boardDto);
+		
+		return "boardContent";
+	}
 
+	@RequestMapping(value = "/boardmodify")
+	public String boardmodify(HttpServletRequest request, Model model) {
+		
+		String bnum = request.getParameter("bnum");
+		String btitle = request.getParameter("btitle");
+		String bcontent = request.getParameter("bcontent");
+		
+		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+		int result = boardDao.boardModifyDao(bnum, btitle, bcontent);
+		
+		if(result == 1) { //수정 성공->1, 실패->0
+			model.addAttribute("msg", "글 수정이 성공 하였습니다.");
+			model.addAttribute("url", "blist");			
+		} else {
+			model.addAttribute("msg", "글 수정이 실패 하였습니다.");
+			model.addAttribute("url", "blist");			
+		}
+		return "alert/alert";
+	}
+	
+	@RequestMapping(value = "/pagelist")
+	public String blist(HttpServletRequest request, Model model) {
+		
+		int pageNum = 1; //유저가 클릭한 페이지 번호, 초기값은 무조건 1로 설정
+		
+		if(request.getParameter("pageNum") != null) {
+			pageNum = Integer.parseInt(request.getParameter("pageNum"));//유저가 선택한 페이지 번호
+		}
+		
+		int startRow = (PAGE_SIZE * pageNum) - 9;
+		int endRow = PAGE_SIZE * pageNum;
+		
+		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+		List<BoardDto> boardDtos = boardDao.pageBoardListDao(startRow, endRow); //모든 글 가져오기(조인 테이블)
+		int totalCount = boardDao.AllBoardCountDao();
+		
+		int startPage = (((pageNum - 1) / BLOCK_SIZE) * BLOCK_SIZE) + 1;
+		int endPage = startPage + BLOCK_SIZE - 1;
+		int totalPage = (int) Math.ceil((double) totalCount / PAGE_SIZE);
+		
+		if(endPage > totalPage) {
+			endPage = totalPage;
+		}
+		
+		model.addAttribute("boardList", boardDtos);
+		model.addAttribute("pageNum", pageNum);	//유저가 클릭한 페이지 번호 -> 현재 페이지
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage); 
+		
+		model.addAttribute("boardCount", boardDao.AllBoardCountDao()); //모든 글 갯수 전달하기
+		
+		return "pagelist";
+	}
+	
 }

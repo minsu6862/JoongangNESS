@@ -17,6 +17,7 @@
 		<result property="bwriter"  column="bwriter" />
 		<result property="bhit"  column="bhit" />
 		<result property="bdate"  column="bdate" />
+		<result property="rnum"  column="rnum" />
 		
 		<association property="memberDto" javaType="com.gyojincompany.oracle.dto.MemberDto">
 			<id property="memberid" column="memberid" />
@@ -44,5 +45,43 @@
 	<delete id="boardDeleteDao">
 		DELETE FROM boardtbl WHERE bnum=#{param1}
 	</delete>
+	
+	<!-- 글 번호로 게시판 글 레코드 가져오기 : 글쓴이 아이디로 출력
+	<select id="contentViewDao" resultType="com.gyojincompany.oracle.dto.BoardDto">
+		SELECT * FROM boardtbl WHERE bnum=#{param1}
+	</select>
+	-->
+	
+	<!-- 글 번호로 게시판 글 레코드 가져오기 : 글쓴이 이름으로 출력 -->	
+	<select id="contentViewDao" resultMap="boardWithMember">
+		SELECT b.bnum, b.btitle, b.bcontent, b.bwriter, m.membername, b.bhit, b.bdate
+			FROM boardtbl b
+				INNER JOIN membertbl m ON b.bwriter = m.memberid	
+				   WHERE b.bnum = #{param1}				
+	</select>
+	
+	<!-- 글 번호로 해당 글 수정하기 -->
+	<update id="boardModifyDao">
+		UPDATE boardtbl SET btitle=#{param2}, bcontent=#{param3} WHERE bnum=#{param1}
+	</update>
+	
+	<!-- 글 번호로 조회 수 증가 -->
+	<update id="updateHitDao">
+		UPDATE boardtbl SET bhit=bhit+1 WHERE bnum=#{param1}
+	</update>
+	
+	<!-- 페이징 적용시킨 리스트 호출, &lt; &gt;를 사용해도 되긴함 -->
+	<select id="pageBoardListDao" resultMap="boardWithMember">
+	<![CDATA[
+		select *
+    		from (select ROWNUM as rnum, r.*
+            	from
+                	(SELECT b.bnum, b.btitle, b.bcontent, b.bwriter, m.membername, b.bhit, b.bdate
+                    	FROM boardtbl b
+                        	INNER JOIN membertbl m ON b.bwriter = m.memberid	
+                            	ORDER BY b.bnum DESC) r WHERE ROWNUM <= #{param2})
+                                	WHERE rnum >	= #{param1}
+	]]>
+	</select>
 	
 </mapper>
