@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.minsu.miniproject.dao.ReserveDao">
+	<!-- seat:member 1:1관계 매핑 -->
+    <resultMap type="com.minsu.miniproject.dto.ReserveDto" id="ReserveWithMember">
+        <id property="seatname" column="seatname" />
+        <result property="reserved" column="reserved" />
+        <result property="reserveid" column="reserveid" />
+        
+        <association property="memberDto" javaType="com.minsu.miniproject.dto.MemberDto">
+            <id property="memberid" column="memberid" />
+            <result property="membernum" column="membernum" />
+            <result property="memberpw" column="memberpw" />
+            <result property="membername" column="membername" />
+            <result property="memberdate" column="memberdate" />
+        </association>
+    </resultMap>
+    
+    <!-- 모든 좌석 조회 (간단 버전) -->
+    <select id="selectAllSeats" resultType="com.minsu.miniproject.dto.ReserveDto">
+        SELECT seatname, reserved, reserveid FROM seat ORDER BY seatname
+    </select>
+	
+	<!-- 특정 좌석 조회 -->
+    <select id="selectSeatByName" parameterType="String" resultType="com.minsu.miniproject.dto.ReserveDto">
+        SELECT seatname, reserved, reserveid FROM seat WHERE seatname = #{seatname}
+    </select>
+    
+    <!-- 좌석 예약 처리 -->
+    <update id="updateSeatReservation" parameterType="map">
+        UPDATE seat 
+        SET reserved = 1, reserveid = #{sessionId}
+        WHERE seatname = #{seatname} AND reserved = 0
+    </update>
+    
+    <!-- 좌석 예약 취소 -->
+    <update id="cancelSeatReservation" parameterType="String">
+        UPDATE seat 
+        SET reserved = 0, reserveid = NULL
+        WHERE seatname = #{seatname}
+    </update>
+	
+</mapper>

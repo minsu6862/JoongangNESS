@@ -75,7 +75,7 @@ public class BoardController {
 		
 		model.addAttribute("boardCount", boardDao.AllBoardCountDao()); //모든 글 갯수 전달하기
 		
-		return "boardlist2";
+		return "boardList2";
 	}
 	
 	@RequestMapping(value = "/boarddelete")

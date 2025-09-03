@@ -80,7 +80,7 @@
                     	FROM boardtbl b
                         	INNER JOIN membertbl m ON b.bwriter = m.memberid	
                             	ORDER BY b.bnum DESC) r WHERE ROWNUM <= #{param2})
-                                	WHERE rnum >	= #{param1}
+                                	WHERE rnum >= #{param1}
 	]]>
 	</select>
 	
