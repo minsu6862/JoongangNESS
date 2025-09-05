@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.minsu.member.dao.MemberDao">
+	<insert id="joinMemberDao">
+		INSERT INTO membertbl(membernum, memberid, memberpw, membername)
+			VALUES (#{member_seq.nextval, param1}, #{param2}, #{param3})
+	</insert>
+	
+	<select id="listMemberDao" resultType="com.gyojincompany.member.dto.MemberDto">
+		SELECT * FROM membertbl
+	</select>
+	
+	<delete id="deleteMemberDao">
+		DELETE FROM membertbl WHERE memberid=#{param1}
+	</delete>
+</mapper>
