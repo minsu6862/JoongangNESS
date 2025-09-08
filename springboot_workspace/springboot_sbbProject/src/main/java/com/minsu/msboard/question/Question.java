@@ -1,9 +1,11 @@
-package com.minsu.msboard.entity;
+package com.minsu.msboard.question;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.annotation.CreatedDate;
+
+import com.minsu.msboard.answer.Answer;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

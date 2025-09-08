@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.minsu.msboard.entity.Question;
-import com.minsu.msboard.repository.QuestionRepository;
+import com.minsu.msboard.question.Question;
+import com.minsu.msboard.question.QuestionRepository;
 
 @SpringBootTest
 public class Test01 {
@@ -66,5 +66,22 @@ public class Test01 {
 		Question question = questionRepository.findBySubject("sbb가 무엇인가요?");	//기본키로 조회하기 -> 1번글
 		
 		assertEquals(1, question.getId());
+	}
+	
+	@Test
+	@DisplayName("질문글 제목과 내용으로 조회하기 테스트")
+	public void testJpa5() {
+		Question question = questionRepository.findBySubjectAndContent("sbb가 무엇인가요?", "sbb에 대해 알고 싶습니다");	//기본키로 조회하기 -> 1번글
+		//Select * from Question Where subject = "sbb가 무엇인가요?" AND content = "sbb에 대해 알고 싶습니다"
+		assertEquals(1, question.getId());
+	}
+	
+	@Test
+	@DisplayName("제목에 특정 단어가 들어간 레코드 조회한 글 테스트")
+	public void testJpa6() {
+		List<Question> questionList = questionRepository.findBySubjectLike("%sbb%");	//기본키로 조회하기 -> 1번글
+		
+		Question question = questionList.get(0);
+		assertEquals("sbb가 무엇인가요?", question.getSubject());
 	}
 }
