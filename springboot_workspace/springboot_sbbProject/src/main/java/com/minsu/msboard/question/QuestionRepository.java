@@ -2,6 +2,8 @@ package com.minsu.msboard.question;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
@@ -14,4 +16,6 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
 	
 	public List<Question> findBySubjectLike(String keyword);	//특정 단어가 포함된 제목의 레코드 반환
 	//Select * from Question Where subject LIKE  %?%
+	
+	//TODO:public Page<Question> findAll(Pageable pageable);
 }

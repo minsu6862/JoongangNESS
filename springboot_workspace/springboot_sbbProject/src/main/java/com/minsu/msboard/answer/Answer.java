@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import org.springframework.data.annotation.CreatedDate;
 
 import com.minsu.msboard.question.Question;
+import com.minsu.msboard.user.SiteUser;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,4 +45,8 @@ public class Answer {
 	//N:1 관계 -> 답변:질문
 	@ManyToOne
 	private Question question;
+	
+	//N:1 관계->답변:작성자
+	@ManyToOne
+	private SiteUser author; //글쓴이(1명)
 }

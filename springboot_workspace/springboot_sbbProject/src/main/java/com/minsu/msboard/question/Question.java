@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.annotation.CreatedDate;
 
 import com.minsu.msboard.answer.Answer;
+import com.minsu.msboard.user.SiteUser;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -13,6 +14,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -50,4 +52,8 @@ public class Question {
 	//cascade -> 질문글(부모글)이 삭제될 경우 답변글(자식글)들도 함께 삭제되게 하는 설정
 	@OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
 	private List<Answer> answerList;
+	
+	//N:1 관계->질문:작성자
+	@ManyToOne
+	private SiteUser author; //글쓴이(1명)
 }

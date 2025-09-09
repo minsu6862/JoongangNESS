@@ -5,9 +5,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.minsu.msboard.DataNotFoundException;
+import com.minsu.msboard.user.SiteUser;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,8 +23,11 @@ public class QuestionService {
 	private final QuestionRepository questionRepository;
 	//@RequiredArgsConstructor에 의해 생성자 방식으로 주입(final 필드만 가능)
 	
-	public List<Question> getList() {	//모든 질문글 가져오기
-		return questionRepository.findAll();
+	public List<Question>/*Page<Question>*/ getList(/* int page */) {	//모든 질문글 가져오기 -> 페이징되야함
+		
+		//Pageable pageable = PageRequest.of(page, 10);	//한페이지당 10개의 게시글 표시하기
+		
+		return questionRepository.findAll(/* pageable */);
 	}
 	
 	public Question getQuestion(Integer id) {
@@ -33,11 +40,12 @@ public class QuestionService {
 		}
 	}
 	
-	public void create(String subject, String content) {
+	public void create(String subject, String content, SiteUser user) {
 		Question question = new Question();
 		question.setSubject(subject);
 		question.setContent(content);
 		question.setCreateDate(LocalDateTime.now());
+		question.setAuthor(user);	//글쓴이 entity 추가
 		
 		questionRepository.save(question);
 	}
