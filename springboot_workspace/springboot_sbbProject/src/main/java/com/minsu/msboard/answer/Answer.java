@@ -49,4 +49,6 @@ public class Answer {
 	//N:1 관계->답변:작성자
 	@ManyToOne
 	private SiteUser author; //글쓴이(1명)
+	
+	private LocalDateTime modifyDate;	//답변 글 수정 일시
 }
