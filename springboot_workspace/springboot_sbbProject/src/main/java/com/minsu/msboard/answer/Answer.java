@@ -1,6 +1,7 @@
 package com.minsu.msboard.answer;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import org.springframework.data.annotation.CreatedDate;
 
@@ -12,6 +13,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -51,4 +53,10 @@ public class Answer {
 	private SiteUser author; //글쓴이(1명)
 	
 	private LocalDateTime modifyDate;	//답변 글 수정 일시
+	
+	@ManyToMany
+	Set<SiteUser> voter;	//추천한 유저
+	
+	@ManyToMany
+	Set<SiteUser> disvoter;	//비추천한 유저
 }

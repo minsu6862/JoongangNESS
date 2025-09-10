@@ -99,4 +99,30 @@ public class AnswerController {
 		
 		return String.format("redirect:/question/detail/%s", answer.getQuestion().getId());
 	}
+	
+	//추천기능
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping(value = "/vote/{id}")
+	public String answerVote(@PathVariable("id") Integer id, Principal principal) {
+		Answer answer = answerService.getAnswer(id);
+			
+		SiteUser siteUser = userService.getUser(principal.getName());
+			
+		answerService.vote(answer, siteUser);
+			
+		return String.format("redirect:/question/detail/%s", answer.getQuestion().getId());
+	}
+	
+	//비추천기능
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping(value = "/disvote/{id}")
+	public String answerDisVote(@PathVariable("id") Integer id, Principal principal) {
+		Answer answer = answerService.getAnswer(id);
+			
+		SiteUser siteUser = userService.getUser(principal.getName());
+			
+		answerService.disvote(answer, siteUser);
+			
+		return String.format("redirect:/question/detail/%s", answer.getQuestion().getId());
+	}
 }

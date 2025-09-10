@@ -61,4 +61,29 @@ public class QuestionService {
 	public void delete(Question question) {
 	    this.questionRepository.delete(question);
 	}
+	
+	//추천
+	public void vote(Question question, SiteUser siteUser) {	//조회수랑 같은 매커니즘, update문
+		question.getVoter().add(siteUser);
+		//question -> 추천을 받은 글의 번호로 조회한 질문 entity
+		//question의 멤버인 voter를 getVoter해서 voter에 추천을 누른 유저의 entity를 추가
+		questionRepository.save(question);	//추천한 유저수가 변경된 질문엔티티를 다시 save해서 갱신
+		
+	}
+	
+	//비추천
+	public void disvote(Question question, SiteUser siteUser) {	//조회수랑 같은 매커니즘, update문
+		question.getDisvoter().add(siteUser);
+		//question -> 추천을 받은 글의 번호로 조회한 질문 entity
+		//question의 멤버인 voter를 getVoter해서 voter에 추천을 누른 유저의 entity를 추가
+		questionRepository.save(question);	//추천한 유저수가 변경된 질문엔티티를 다시 save해서 갱신
+		
+	}
+	
+	//조회수 기능
+	public void hit(Question question) {
+		question.setHit(question.getHit() + 1);
+		
+		questionRepository.save(question);
+	}
 }

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.server.ResponseStatusException;
-
+import com.minsu.msboard.SecurityConfig;
 import com.minsu.msboard.SpringbootSbbProjectApplication;
 import com.minsu.msboard.answer.AnswerForm;
 import com.minsu.msboard.user.SiteUser;
@@ -28,6 +28,8 @@ import jakarta.validation.Valid;
 @RequestMapping("/question")
 @Controller
 public class QuestionController {
+
+    private final SecurityConfig securityConfig;
 
     private final SpringbootSbbProjectApplication springbootSbbProjectApplication;
 
@@ -40,8 +42,9 @@ public class QuestionController {
 	@Autowired
 	private UserService userService;
 
-    QuestionController(SpringbootSbbProjectApplication springbootSbbProjectApplication) {
+    QuestionController(SpringbootSbbProjectApplication springbootSbbProjectApplication, SecurityConfig securityConfig) {
         this.springbootSbbProjectApplication = springbootSbbProjectApplication;
+        this.securityConfig = securityConfig;
     }
 	
 //	페이징용 리스트
@@ -70,6 +73,11 @@ public class QuestionController {
 	
 	@GetMapping(value = "/detail/{id}") //파라미터 이름 없이 값만 넘어왔을때 처리하게끔 수행
 	public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm) {
+		
+		
+		//조회수 증가 메소드
+		questionService.hit(questionService.getQuestion(id));
+		
 		//service에 2를 넣어서 호출
 		Question question = questionService.getQuestion(id);
 		model.addAttribute("question", question);
@@ -162,4 +170,31 @@ public class QuestionController {
 		
 		return "redirect:/question/list";
 	}
+	
+	//추천기능
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping(value = "/vote/{id}")
+	public String questionVote(@PathVariable("id") Integer id, Principal principal) {
+		Question question = questionService.getQuestion(id);
+		
+		SiteUser siteUser = userService.getUser(principal.getName());
+		
+		questionService.vote(question, siteUser);
+		
+		return String.format("redirect:/question/detail/%s", id);
+	}
+	
+	//비추천기능
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping(value = "/disvote/{id}")
+	public String questionDisVote(@PathVariable("id") Integer id, Principal principal) {
+		Question question = questionService.getQuestion(id);
+		
+		SiteUser siteUser = userService.getUser(principal.getName());
+		
+		questionService.disvote(question, siteUser);
+		
+		return String.format("redirect:/question/detail/%s", id);
+	}
+	
 }

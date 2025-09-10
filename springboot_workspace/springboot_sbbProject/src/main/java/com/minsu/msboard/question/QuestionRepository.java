@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
 
@@ -18,4 +20,8 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
 	//Select * from Question Where subject LIKE  %?%
 	
 	//TODO:public Page<Question> findAll(Pageable pageable);
+	
+//	@Query(value = "UPDATE question SET hit=hit + 1 WHERE id = :id", nativeQuery = true)
+//	public void updateHit(@Param("id") Integer id);	//기본글의 기본키 번호로 조회수 증가
+	
 }

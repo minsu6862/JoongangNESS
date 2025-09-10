@@ -2,6 +2,7 @@ package com.minsu.msboard.question;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.annotation.CreatedDate;
 
@@ -14,6 +15,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
@@ -57,6 +59,15 @@ public class Question {
 	@ManyToOne
 	private SiteUser author; //글쓴이(1명)
 	
-	
 	private LocalDateTime modifyDate;	//질문 글 수정 일시
+	
+	//N:N 관계 -> 질문:추천자
+	//set -> 중복제거용 컬렉션 사용, 유저 한명당 추천1개만 적용
+	@ManyToMany
+	Set<SiteUser> voter;	//추천한 유저
+	
+	@ManyToMany
+	Set<SiteUser> disvoter;	//비추천한 유저
+	
+	private Integer hit = 0;;	//조회수
 }
