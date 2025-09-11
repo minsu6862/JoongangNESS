@@ -47,29 +47,31 @@ public class QuestionController {
         this.securityConfig = securityConfig;
     }
 	
-//	페이징용 리스트
-//	@GetMapping(value = "/list")
-//	//@ResponseBody	//페이징 라이브러리에서는 기본이 되야하는 첫 페이지가 1이 아니라 0부터 시작
-//	public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
-//		
-//		//List<Question> questionList = questionRepository.findAll();
-//		//List<Question> questionList = questionService.getList();
-//		Page<Question> paging = questionService.getList(page);
-//		model.addAttribute("paging", paging);
-//		
-//		return "question_list";
-//	}
-	
+	//페이징용 리스트
 	@GetMapping(value = "/list")
 	//@ResponseBody	//페이징 라이브러리에서는 기본이 되야하는 첫 페이지가 1이 아니라 0부터 시작
-	public String list(Model model) {
+	public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page, @RequestParam(value="kw", defaultValue = "") String kw)  {
 		
-		//List<Question> questionList = questionRepository.findAll();
-		List<Question> questionList = questionService.getList();
-		model.addAttribute("paging", questionList);
+		//List<Question> questionList = questionRepository.findAll(); //모든 질문글 불러오기
+		 //List<Question> questionList = questionService.getList();
+		Page<Question> paging = questionService.getPageQuestions(page, kw);		
+		//게시글 10개씩 자른 리스트->페이지당 10개->2페이지에 해당하는 글 10개 
+		model.addAttribute("paging", paging);
+		model.addAttribute("kw", kw);
 		
 		return "question_list";
 	}
+	
+//	@GetMapping(value = "/list")
+//	//@ResponseBody	//페이징 라이브러리에서는 기본이 되야하는 첫 페이지가 1이 아니라 0부터 시작
+//	public String list(Model model) {
+//		
+//		//List<Question> questionList = questionRepository.findAll();
+//		List<Question> questionList = questionService.getList();
+//		model.addAttribute("paging", questionList);
+//		
+//		return "question_list";
+//	}
 	
 	@GetMapping(value = "/detail/{id}") //파라미터 이름 없이 값만 넘어왔을때 처리하게끔 수행
 	public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm) {
