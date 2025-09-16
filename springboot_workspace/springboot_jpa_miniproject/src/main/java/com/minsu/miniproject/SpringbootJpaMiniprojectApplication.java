@@ -1,13 +1,13 @@
-package com.minsu.msboard;
+package com.minsu.miniproject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringbootSbbProject1Application {
+public class SpringbootJpaMiniprojectApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringbootSbbProject1Application.class, args);
+		SpringApplication.run(SpringbootJpaMiniprojectApplication.class, args);
 	}
 
 }

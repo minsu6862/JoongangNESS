@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Cruise</title>
+    <link rel="stylesheet" th:href="@{/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body class="bg-light">
+    <!-- 네비게이션 -->
+    <nav th:replace="~{navbar :: navbarFragment}"></nav>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="container my-5" layout:fragment="content"></main>
+
+    <!-- 푸터 -->
+    <footer class="text-center text-white py-4 mt-5" style="background-color:#0a2342;">
+        <p class="mb-0">© 2025 Cruise Booking. All Rights Reserved.</p>
+        <small>고객센터 | 이용약관 | 개인정보처리방침</small>
+    </footer>
+
+    <!-- JS -->
+    <script th:src="@{/bootstrap.bundle.min.js}"></script>
+    <th:block layout:fragment="script"></th:block>
+</body>
+</html>

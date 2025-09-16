@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.navbar .nav-link:hover {
+    color: #d4af37 !important;
+    text-decoration: underline;
+}
+
+.btn-gold {
+    background-color: #d4af37;
+    color: #0a2342;
+    border: none;
+}
+.btn-gold:hover {
+    background-color: #b7952b;
+    color: white;
+}
+
+/* Hero 영역 */
+.hero-section {
+    position: relative;
+    height: 75vh;
+    min-height: 500px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;   /* 세로 가운데 */
+    padding-left: 10%;     /* 좌측 여백 */
+    color: #fff;
+}
+
+/* 텍스트는 왼쪽 정렬 */
+.hero-content {
+    text-align: left;
+    max-width: 600px;
+}
+
+/* 제목 */
+.hero-title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+/* 서브 텍스트 */
+.hero-sub {
+    font-size: 1.1rem;
+    margin-bottom: 1.8rem;
+    opacity: 0.9;
+}
+
+/* 버튼 */
+.btn-gold {
+    background-color: #d4af37;
+    color: #0a2342;
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.2s ease;
+}
+.btn-gold:hover {
+    background-color: #b8932f;
+    color: #fff;
+}

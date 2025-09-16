@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<div layout:fragment="content">
+
+   	<!-- Hero Section -->
+	<section class="hero-section" 
+         th:style="'background-image: url(' + @{/images/cruise-hero.jpg} + ');'">
+	    <div class="hero-content">
+	        <h1 class="hero-title">럭셔리 크루즈<br>여행을 예약하세요</h1>
+	        <p class="hero-sub">지중해부터 카리브해까지, 최고의 선상 경험을 지금 만나보세요</p>
+	        <a th:href="@{/reservation}" class="btn btn-gold hero-cta">예약하기</a>
+	    </div>
+	</section>
+
+    <!-- 추천 일정 -->
+    <section class="my-5">
+        <h2 class="text-center mb-4 fw-bold" style="color:#0a2342;">추천 일정</h2>
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="card shadow-lg border-0 h-100">
+                    <img src="/images/mediterranean.jpg" class="card-img-top" alt="지중해 크루즈">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">지중해 크루즈 10일</h5>
+                        <p class="card-text">로마, 아테네, 바르셀로나를 경유하는 꿈의 여행</p>
+                        <a href="#" class="btn btn-gold">자세히 보기</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow-lg border-0 h-100">
+                    <img src="/images/caribbean.jpg" class="card-img-top" alt="카리브해 크루즈">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">카리브해 크루즈 7일</h5>
+                        <p class="card-text">푸른 바다와 흰 모래사장이 기다리는 환상 여행</p>
+                        <a href="#" class="btn btn-gold">자세히 보기</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow-lg border-0 h-100">
+                    <img src="/images/asia.jpg" class="card-img-top" alt="동남아 크루즈">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">동남아 크루즈 5일</h5>
+                        <p class="card-text">싱가포르, 방콕, 푸켓을 연결하는 이국적인 여행</p>
+                        <a href="#" class="btn btn-gold">자세히 보기</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+</html>

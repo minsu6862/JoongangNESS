@@ -1,10 +1,10 @@
-package com.minsu.msboard;
+package com.minsu.miniproject;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringbootSbbProject1ApplicationTests {
+class SpringbootJpaMiniprojectApplicationTests {
 
 	@Test
 	void contextLoads() {
