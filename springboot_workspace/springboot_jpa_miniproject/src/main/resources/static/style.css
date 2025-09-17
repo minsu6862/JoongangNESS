@@ -69,3 +69,32 @@ body {
     background-color: #b8932f;
     color: #fff;
 }
+
+/* 공지사항 제목 링크 기본 스타일 */
+.notice-link {
+    color: #000;              /* 기본 검정색 */
+    text-decoration: none;    /* 밑줄 제거 */
+    font-weight: 500;
+}
+
+/* 마우스 올렸을 때 */
+.notice-link:hover {
+    color: #d4af37;           /* 골드 포인트 컬러 */
+    text-decoration: underline;
+}
+
+/* 방문한 링크 (읽은 글) */
+.notice-link:visited {
+    color: #999;           /* 회색 */
+}
+
+/* 댓글 수정/삭제 링크 스타일 */
+.comment-action {
+    text-decoration: none;   /* 밑줄 제거 */
+    font-size: 0.875rem;     /* small 과 비슷한 크기 */
+    margin-left: 0.25rem;
+}
+
+.comment-action:hover {
+    text-decoration: underline; /* 마우스 올렸을 때만 밑줄 */
+}

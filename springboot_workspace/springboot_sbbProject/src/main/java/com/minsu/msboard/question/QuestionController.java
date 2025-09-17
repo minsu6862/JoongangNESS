@@ -161,7 +161,7 @@ public class QuestionController {
 	public String questionDelete(@Valid QuestionForm questionForm, BindingResult bindingResult,
             @PathVariable("id") Integer id, Principal principal) {
 		
-		Question question = questionService.getQuestion(id );
+		Question question = questionService.getQuestion(id);
 		
 		// 삭제 권한 확인
 	    if (!question.getAuthor().getUsername().equals(principal.getName())) {

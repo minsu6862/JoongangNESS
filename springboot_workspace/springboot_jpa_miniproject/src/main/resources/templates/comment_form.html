@@ -1,0 +1,69 @@
+<html layout:decorate="~{layout}">
+  <div layout:fragment="content" class="container">
+    <h5 class="my-3 border-bottom pb-2">댓글 수정</h5>
+
+    <form th:object="${commentForm}" method="post">
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+      
+      <!-- 유효성 체크, 에러 표시 -->
+      <div th:replace="~{form_errors :: formErrorsFragment}"></div>
+
+      <!-- 본문 입력 -->
+      <div class="mb-3">
+        <label for="content" class="form-label">내용</label>
+        <textarea th:field="*{content}" class="form-control custom-textarea" rows="6"></textarea>
+      </div>
+
+      <!-- 버튼 -->
+      <div class="d-flex justify-content-end">
+        <input type="submit" value="저장하기" class="btn btn-primary me-2">
+        <a href="javascript:history.back()" class="btn btn-secondary">취소</a>
+      </div>
+    </form>
+  </div>
+
+  <style>
+    /* 본문 textarea */
+    .custom-textarea {
+      border-radius: 0.5rem;
+      border: 1px solid #ddd;
+      background-color: #fafafa;
+      resize: none;
+      transition: box-shadow 0.2s ease-in-out;
+    }
+    .custom-textarea:focus {
+      border-color: #0d6efd;
+      box-shadow: 0 0 6px rgba(13, 110, 253, 0.3);
+      background-color: #fff;
+    }
+
+    /* 버튼 스타일 */
+    .btn {
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+      padding: 0.45rem 1.2rem;
+    }
+
+    .btn-primary {
+      background-color: #0d6efd;
+      border: none;
+    }
+    .btn-primary:hover {
+      background-color: #0b5ed7;
+    }
+
+    .btn-secondary {
+      background-color: #6c757d;
+      border: none;
+    }
+    .btn-secondary:hover {
+      background-color: #5c636a;
+    }
+
+    /* 제목 스타일 */
+    h5 {
+      font-weight: 600;
+      color: #333;
+    }
+  </style>
+</html>

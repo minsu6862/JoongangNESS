@@ -69,5 +69,5 @@ public class Question {
 	@ManyToMany
 	Set<SiteUser> disvoter;	//비추천한 유저
 	
-	private Integer hit = 0;;	//조회수
+	private Integer hit = 0;	//조회수
 }

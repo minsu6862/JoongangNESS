@@ -24,7 +24,7 @@ public class MemberSecurityService implements UserDetailsService {
 		
 		Optional<Member> _member = memberRepository.findByMemberName(userName);
 		
-		if(_member.isPresent()) {
+		if(_member.isEmpty()) {
 			throw new UsernameNotFoundException("입력하신 사용자를 찾을 수 없습니다.");
 		}
 		
