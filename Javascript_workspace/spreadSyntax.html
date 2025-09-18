@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전개구문 연습</title>
+</head>
+<body>
+    <script>
+        let arr1 = [10, 20, 30];
+        let arr2 = [50, 60, 70];
+
+        console.log(...arr1);
+        console.log(arr1);
+
+        let arr12 = [...arr1, ...arr2]; //arr1배열과 arr2배열 합치기
+        let arr11 = [...arr1];  //arr1을 복사
+        console.log(arr === arr2) // false
+
+        //함수에 인수로 전달할 때
+        function add(x, y, z) {
+            return x+y+z;
+        }
+
+        console.log(add(arr2[0], arr[1], arr[2])); //50+60+70
+        console.log(add(...arr2));  //180
+        
+        //배열 구조 분해 할당 예제
+        let numbers = [10, 20, 30, 40];
+
+        //배열 요소의 값을 변수에 할당하는 이전 방식
+        var a1 = numbers[0];
+        var b1 = numbers[2];
+
+        //구조 분해 할당 방식
+        let [a, ,b] = numbers;
+        console.log(a, b); //10, 30
+
+        let userMap = {name:"홍길동", age:25};
+
+        //이전 방식
+        let userName = userMap.name;
+        let userAge = userMap.age;
+
+        //구조분해할당 방식 사용
+        let {userName1, userAge1} = userMap;
+
+        let numbers2 = [number[0], number[3]]; //[10, 40] -> 이전방식
+
+        let [one, three] = numbers;
+        console.log(one, three);
+
+        const users = {
+            "userA" : [50, 60, 70],
+            "userB" : [80, 90, 70],
+            "userC" : [75, 80, 90]
+        }
+        const {userA, userB} = users;
+
+        //userA = [50, 60, 70]
+        //userB = [80, 90, 70]
+
+        //전개구문
+        const arr = [...userA, ...userB];   //[50, 60, 70, 80, 90, 70]
+    </script>
+</body>
+</html>

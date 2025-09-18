@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열 객체 메소드</title>
+</head>
+<body>
+    <script>
+        var arr_1 = ["사당", "교대", "방배", "강남"];
+        var arr_2 = ["신사", "압구정", "옥수"];
+
+        var result = arr_1.join(" - ");
+        document.write(result);
+
+        console.log(result);    //웹브라우저 콘솔창에 출력
+
+        var result = arr_1.concat(arr_2).join(" - "); //2개의 배열 합치기
+        document.write(result);
+        console.log(result);    //웹브라우저 콘솔창에 출력
+
+        var result = arr_1.slice(1, 3); //배열 요소중 1, 2만 출력
+        console.log(result);
+
+        var result = arr_1.sort();  //배열 오름차순 정렬 -> 원본 변경됨
+        console.log(result);
+        console.log(arr_1);
+
+        console.log(arr_2.reverse());   //내림차순 정렬 -> 원본도 변경됨
+        console.log(arr_2);
+
+        console.log(arr_1.pop());   //배열에서 제일 마지막객체 꺼내기(원본 배열에서 사라짐)
+        console.log(arr_1);
+
+        console.log(arr_1.push("신촌"));    //배열 마지막 인덱스에 추가하기
+        console.log(arr_1);
+
+        console.log(arr_1.unshift("종로")); //배열 첫번째 인덱스에 추가
+        console.log(arr_1);
+
+        console.log(arr_1.shift()); //배열의 첫번째요소를 추출한 후 해당 요소를 제거
+        console.log(arr_1);
+
+        console.log(arr_1.length);  //배열의 길이(총 데이터 갯수를 반환)
+
+        console.log(arr_1.splice(1, 2));    //해당 인덱스 범위의 요소들을 추출한 후 해당 요소 제거
+        console.log(arr_1);
+
+        //arr_2 = [옥수, 압구정, 신사]
+        console.log(arr_2.splice(1, 0, "용산", "마포"));
+        console.log(arr_2);
+        //arr_2 = [옥수, 용산, 마포, 압구정, 신사]
+        console.log(arr_2.splice(1, 1, "합정"));
+        console.log(arr_2);
+        //splice -> 삭제, 추가, 교체, 삭제된 값 반환 등 기능 다양함
+    </script>
+</body>
+</html>

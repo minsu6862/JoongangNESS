@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="example.js"></script>
+</head>
+<body>
+    <h1>Hello, World!</h1>
+    <script>
+        var age = prompt("당신의 나이는? ", 0);
+
+        if(age >= 20) {
+            document.write("당신은 성인입니다. <br>");
+        } else {
+            document.write("미성년자입니다. <br>");
+        }
+
+        var number1 = 100;
+        var string1 = "kor";
+        document.write(typeof number1, "<br>");
+        document.write(typeof string1, "<br>");
+
+        let name = "홍길동";
+        let str = `내 이름은 ${name} 입니다`;
+        document.write(str, "<br>");
+
+        var arr = [10, 20, 30];
+        for(var i = 0; i<arr.length; i++) {
+            document.writeln(arr[i]);
+        }
+
+        for(var i of arr) {
+            document.writeln(i);
+        }
+
+        var num1 = 100;
+        var numString1 = "100";
+        document.write(num == numString1, "<br>");  //타입에 관계없이 같으면 true
+        document.write(num === numString1, "<br>");  //타입이 다르면 false
+
+        
+    </script>
+</body>
+</html>

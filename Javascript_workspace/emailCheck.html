@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var userEmail = prompt("당신의 이메일 주소를 입력하세요", "");
+        var arrUrl = [".co.kr", ".com", ".net", ".or.kr", "go.kr"];
+
+        var check1 = false;
+        var check2 = false;
+
+        //유저에게 입력받은 이메일 문자열 내에 @ 포함되어있는지 체크
+        if(userEmail.indexOf("@") > 0) {    //@존재하면 해당 인덱스 값 반환
+            check1 = true;
+        }
+
+        for(var i = 0; i < arrUrl.length; i++) {
+            //유저가 입력한 email내에 url배열 문자열이 존재하는지 체크
+            if(userEmail.indexOf(arrUrl[i]) > 0) {
+                check2 = true;
+            }
+        }
+
+        if (check1 && check2) {
+            document.write(userEmail);
+        } else {
+            alert("이메일 형식이 잘못 되었습니다.");
+        }
+    </script>
+</body>
+</html>

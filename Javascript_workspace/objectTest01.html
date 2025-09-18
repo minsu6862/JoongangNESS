@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var tv = new Object();
+        tv.color = "white";
+        tv.price = 300000;
+        tv.info = function() {
+            document.writeln("색상 : " + this.color);
+            document.writeln("가격 : " + this.price);
+        }
+
+        tv.info();
+
+    </script>
+</body>
+</html>

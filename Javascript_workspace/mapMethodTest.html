@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [10, 20, 30];
+        let arr2 = arr.map((num) => (num/10));
+        console.log(arr2);
+        console.log(arr);
+
+        let strArr = ["abc", "def", "efg"];
+        let strArr2 = strArr.map(str => str.toUpperCase());
+        console.log(strArr2);
+
+        let numbers = [10, 20, 30];
+        let numbers2 = numbers.map((value, idx) => value + idx);
+        console.log(numbers2);
+
+        let strArr3 = ["kor", "jap", "usa"];
+        strArr3.some(nation => nation === "kor");
+
+    </script>
+</body>
+</html>
