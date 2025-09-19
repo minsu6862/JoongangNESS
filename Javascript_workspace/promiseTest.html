@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //promise 객체 -> 비동기 작업의 결과를 약속하는 객체
+        //미래의 결과를 약속
+        const promise = new Promise((resolve, reject) => {
+            const success = true;
+
+            if(success) {
+                resolve("작업 성공");
+            } else {
+                reject("작업 실패");
+            }
+        });
+
+        promise
+        .then(result => console.log("성공 : ", result))
+        .catch(error => console.log("실패 : ", error))
+        .finally(() => console.log("무조건 실행"));
+
+    </script>
+
+    <script>
+        //라면 장보기 성공일 경우
+        const 라면_장보기 =  new Promise((resolve, reject) => {
+            setTimeout(()=> {
+            console.log('A. 라면 장보기');
+            console.log('B. 라면 물 끓이기');  
+            resolve('라면 장보기 완료');
+            }, 1000); 
+        });
+
+        라면_장보기
+        .then((result) => {
+            console.log(result); //라면 장보기 완료
+            console.log('C.  끓는 물에 라면, 스프 넣고, 익히기');
+            console.log('D.  라면 완성 후 시식하기'); 
+        })
+        .catch((result) => {
+            console.log(result);
+            console.log('라면 만들기 중단');
+        });
+
+        //커피 장보기 실패일 경우
+        const 커피_장보기 =  new Promise((resolve, reject) => {
+            setTimeout(() => {
+            console.log('E. 커피 장보기');
+            console.log('F. 커피 물 끓이기');
+                reject('커피 품절');
+            }, 1000); 
+        });
+
+        커피_장보기
+        .then((result) => {
+            console.log('G. 끓는 물에 커피 넣고, 젖기');
+            console.log('H. 커피 완성 후 마시기');  
+        })
+        .catch((result) => {
+            console.log(result); //커피 품절
+            console.log('커피 만들기 중단');
+        });
+    </script>
+</body>
+</html>
