@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title> 효과와 애니메이션 </title>  
+<script src="js/jquery.js"></script>
+<script>
+$(function(){
+	$(".txt1")
+	.animate({marginLeft:"300px"},1000) //오른쪽으로 300px 이동
+	.animate({marginTop:"300px"},1000) //아래쪽으로 300px 이동
+	.queue(function(){ //작업을 대기열에 등록
+		$(this).css("background-color","red");
+		$(this).dequeue(); //다음 작업을 실행해주는 역할
+	})
+	.animate({marginLeft:"0px"},1000) //왼쪽으로 300px 이동
+	.animate({marginTop:"0px"},1000) //위쪽으로 300px 이동
+});
+</script>
+<style>
+	*{margin:0;}
+	.txt1{width:50px;text-align: 
+	center;background-color: aqua;}
+</style>
+</head>
+<body>
+	<p class="txt1">내용1</p>
+</body>
+</html>

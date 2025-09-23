@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title> 이벤트 </title>  
+<script src="js/jquery.js"></script>
+<script>
+$(function(){
+	$(".menuWrap_1 > li > a").on("click", function(e) {
+		e.preventDefault(); //기본 이벤트 발생 정지
+		$(".menuWrap_1 a").css("background-color","white");
+		$(this).css("background-color","yellow");
+	});
+
+	$(".menuWrap_2 > li > a").on("click", function(e) {
+		e.preventDefault(); //기본 이벤트 발생 정지
+		$(".menuWrap_2 a").css("background-color","white");
+		
+		var idx = $(".menuWrap_2 a").index(this); //선택된 요소의 인덱스 가져오기
+
+		$(".menuWrap_2 a").eq(idx).css("background-color","pink");
+
+		$(".idxNum").text(idx);
+
+	});
+});
+</script>
+</head>
+<body>
+<h2>$(this)</h2>
+<ul class="menuWrap_1">
+				<li><a href="#">메뉴1</a></li>
+				<li><a href="#">메뉴2</a></li>
+				<li><a href="#">메뉴3</a></li>
+</ul>
+<h2>Index( )</h2>   
+<ul class="menuWrap_2">
+				<li><a href="#">메뉴4</a></li>
+				<li><a href="#">메뉴5</a></li>
+				<li><a href="#">메뉴6</a></li>
+</ul>
+<p class="idxNum"></p>
+</body>
+</html>

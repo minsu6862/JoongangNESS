@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>키오스크</title>
+    <script src="js/jquery.js"></script>
+    <script>
+        $(function() {
+            $(".menu").click(function() {
+                var menuItem = $(this).text().trim(); //피자, 햄버거, 커피
+                //유저가 클릭한 메뉴의 이름
+
+              $.ajax({
+                url:"js/menu.json", //주문 서버 요청 주소
+                type:"GET",
+                dataType:"json",
+                //data: {menu : menuItem}, //서버에 유저가 선택한 메뉴(버거, 피자) 전송
+                success: function(data) {                    
+                    var idx = 0;
+                    if (menuItem === "햄버거") {
+                        idx = 1;
+                    } 
+                    if (menuItem === "피자") {
+                        idx = 0;
+                    } 
+                    if (menuItem === "커피") {
+                        idx = 2;
+                    } 
+                    $("#orderitems").append(
+                        "<li>" + data[idx].name + "/ 가격 : " + data[idx].price + "원</li>"
+                    );
+                },
+                error: function() {
+                    alert("주문 실패!");
+                }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>키오스크 메뉴 선택</h1>
+    <button class="menu">햄버거</button>
+    <button class="menu">피자</button>
+    <button class="menu">커피</button>
+    <hr>
+    <div id="orderlist">
+        <h2>주문 내역</h2>
+        <ul id="orderitems">
+
+        </ul>
+    </div>
+</body>
+</html>

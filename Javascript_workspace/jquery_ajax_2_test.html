@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title> Ajax </title>
+<script src="js/jquery.js"></script>
+<script>
+  //Ajax로 json파일을 데이터베이스에 요청하여 HTML 문단태그와 결합해서 출력 -> 바인딩
+$(function() {
+  $.ajax({
+    url:"js/MOCK_DATA.json",
+    dataType:"json",
+    success:function(data) {
+      if(data.length > 0) { //null값 방지
+        var tb = $("<table />");  //테이블 태그 선언
+
+        for(var i in data) {  //i->index 0~999
+          var $id = data[i].id;
+          var $first_name = data[i].first_name;
+          var $last_name = data[i].last_name;
+          var $email = data[i].email;
+          var $gender = data[i].gender;
+
+          var row = $("<tr />").append(
+            $("<td />").text($id),
+            $("<td />").text($first_name),
+            $("<td />").text($last_name),
+            $("<td />").text($email),
+            $("<td />").text($gender)
+          )
+          tb.append(row); //테이블 태그에 <tr>태그 넣기
+        }
+        $(".wrap").append(tb);
+      }
+    }
+  });
+});
+</script>
+</head>
+<body>
+  <div class="wrap"></div>
+</body>
+</html>

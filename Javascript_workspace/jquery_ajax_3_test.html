@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title> Ajax </title>
+<script src="js/jquery.js"></script>
+<script>
+$(function() {
+    $.ajax({
+        url:"js/dataset.xml",
+        dataType:"xml",
+        success:function(data) {
+            var tb = $("<table />");
+            
+            // XML의 각 레코드 요소를 찾아서 반복
+            $(data).find("record").each(function() {  // XML 구조에 맞게 수정 필요
+                var $id = $(this).find("id").text();
+                var $first_name = $(this).find("first_name").text();
+                var $last_name = $(this).find("last_name").text();
+                var $email = $(this).find("email").text();
+                var $gender = $(this).find("gender").text();
+
+                var row = $("<tr />").append(
+                    $("<td />").text($id),
+                    $("<td />").text($first_name),
+                    $("<td />").text($last_name),
+                    $("<td />").text($email),
+                    $("<td />").text($gender)
+                );
+                tb.append(row);
+            });
+            
+            $(".wrap").append(tb);
+        }
+    });
+});
+</script>
+</head>
+<body>
+	<div class="wrap"></div>
+</body>
+</html>

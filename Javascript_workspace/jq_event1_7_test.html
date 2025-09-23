@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title> 이벤트 </title>  
+<script src="js/jquery.js"></script>
+<script>
+$(function( ) {
+	//마우스포인터가 부모->자식으로 이동해도 이벤트가 발생
+	$("#box_1").on("mouseout", function() {
+		$("#box_1").css("background-color", "yellow");
+	});
+
+	//마우스 포인터가 부모->자식 요소로 이동해도 이벤트 발생x
+	$("#box_2").on("mouseleave", function() {
+		$("#box_2").css("background-color", "pink");
+	});
+});
+</script>
+</head>
+<body>
+	<h1>mouseout</h1>
+	<div id="box_1" style="border: 1px solid red";>
+		<p><a href="#">내용1</a></p>
+		<p><a href="#">내용2</a></p>
+		<p><a href="#">내용3</a></p>
+	</div>
+
+	<h1>mouseleave</h1>
+	<div id="box_2" style="border: 1px solid red";>
+		<p><a href="#">내용4</a></p>
+		<p><a href="#">내용5</a></p>
+		<p><a href="#">내용6</a></p>
+	</div>
+</body>
+</html>
