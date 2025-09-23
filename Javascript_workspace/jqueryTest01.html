@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery.js"></script>
+    <script>
+        $(function() {
+            //체이닝 기법
+            $("#hello").css("color", "red").css("background-color", "yellow");
+        });
+        $(function() {
+            $("*").css("border", "1px solid blue");
+        })
+        $(function() {
+            $(".tit").css("background-color", "pink");
+        })
+        $(function() {
+            $("h3").css("background-color", "green");
+        })
+        $(function() {
+            $("#h4text, h5").css("background-color", "skyblue");
+        })
+    </script>
+</head>
+<body>
+    <h1 id="hello">HelloWorld! 안녕하세요</h1>
+    <h1>제이쿼리</h1>
+    <h2 class="tit">선택자</h2>
+    <h3>직접 선택자</h3>
+    <h4 id="h4text">직접 선택자</h4>
+    <h5>직접 선택자</h5>
+</body>
+</html>

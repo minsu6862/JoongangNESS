@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery.js"></script>
+    <script>
+        $(function() {
+            $("li:first-of-type").css({"background-color":"red"});
+            $("li:last-of-type").css({"background-color":"blue"});
+            $("#menu1 li:nth-child(1)").css({"background-color":"pink"});
+            $("#menu1 li:nth-child(2n)").css({"background-color":"green"});
+            $("#menu2 li:nth-last-child(2n)").css({"background-color":"gold"});
+            $("#menu1 li").slice(1, 3).css("border", "2px dashed brown");
+            //자식태그가 하나인 경우에만 적용
+            $("li:only-child").css("border", "2px dashed gray");
+            
+        });
+    </script>
+</head>
+<body>
+    <h1 >탐색 선택자</h1>
+    <ul>
+        <li>내용1</li>
+        <li>내용1</li>
+        <li>내용1</li>
+        <li>내용1</li>
+    </ul>
+    <ul>
+        <li>내용5</li>
+        <li>내용6</li>
+        <li>내용7</li>
+        <li>내용8</li>
+    </ul>
+
+    <h1>탐색 선택자</h1>
+    <ul id="menu1">
+        <li>내용1</li>
+        <li>내용1</li>
+        <li>내용1</li>
+        <li>내용1</li>
+    </ul>
+    <ul id="menu2">
+        <li>내용5</li>
+        <li>내용6</li>
+        <li>내용7</li>
+        <li>내용8</li>
+    </ul>
+    <ul id="menu3">
+        <li>내용5</li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery.js"></script>
+    <script>
+        $(function() {
+            $("#menu li:first").css("background-color", "red");
+            $("#menu li:last").css("background-color", "green");
+            $("#menu li:even").css("background-color", "pink");
+            $("#menu li:odd").css("background-color", "yellow");
+            $("#menu2 li").eq(2).css("background-color", "blue");
+            $("#menu2 li:lt(2)").css("background-color", "green");
+            $("#menu2 li:gt(2)").css("background-color", "pink");
+        });
+    </script>
+</head>
+<body>
+    <h1 >탐색 선택자</h1>
+    <ul id="menu">
+        <li>내용1</li>
+        <li>내용1</li>
+        <li>내용1</li>
+        <li>내용1</li>
+    </ul>
+
+    <h1 >탐색 선택자</h1>
+    <ul id="menu2">
+        <li>내용5</li>
+        <li>내용6</li>
+        <li>내용7</li>
+        <li>내용8</li>
+    </ul>
+</body>
+</html>

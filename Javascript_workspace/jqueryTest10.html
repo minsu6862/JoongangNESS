@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery.js"></script>
+    <script>
+        $(function() {
+            var arr1 = [
+                {"area":"서울", "name":"무대리"},                
+                {"area":"부산", "name":"홍과장"},
+                {"area":"대전", "name":"박사장"},
+                {"area":"서울", "name":"빅마마"},
+            ];
+
+            var resultArr1 = $.map(arr1, function(a, b){ //->값 변환
+                if (a.area == "서울") {
+                    return a;
+                }
+            });
+
+            console.log(resultArr1);
+
+            var resultArr2 = $.grep(arr1, function(a, b) { //->값 필터링(걸러냄)
+                if (a.area == "서울") {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+            console.log(resultArr2);
+
+            var numbers = [10, 20, 30, 40, 50];
+
+            var result1 = $.map(numbers, function(number) { //새로운 배열이 반환
+                return number * 2;
+            });
+            console.log(result1);
+
+            var result2 = $.grep(numbers, function(number) {
+                return number % 3 == 0;
+            });
+            console.log(result2);
+
+            $(function() {
+                var arr1 = ["서울", "대전", "부산", "전주"];
+                var arr2 = ["한국", "미국", "일본", "중국"];
+                var obj = {
+                    "name" : "정부장",
+                    "area" : "서울"
+                }   //자바의 클래스로 선언한 객체
+                var idxNum = $.inArray("부산", arr1);
+                //해당 배열에 테이터가 존재 시 인덱스 반환(존재하지 않으면 -1 반환)
+                console.log(idxNum);
+                var okArray1 = $.isArray(arr1);    //배열 여부 확인, 배열이면 true
+                var okArray2 = $.isArray(obj);  //false
+                console.log(okArray1);  //true
+                console.log(okArray2);  //false
+
+                var idxNum2 = $("li").index($("#list3"));   //해당 요소의 인덱스 반환
+                console.log(idxNum2);
+
+                $.merge(arr2, arr1);
+                console.log(arr2);
+            })
+        });
+    </script>
+</head>
+<body>
+    <h1>탐색 선택자</h1>
+    <ul id="menu1">
+        <li>내용1</li>
+        <li>내용2</li>
+        <li id="list3">내용3</li>
+        <li>내용4</li>
+    </ul>
+    <ul id="menu2">
+        <li>내용5</li>
+        <li>내용6</li>
+        <li>내용7</li>        
+    </ul>
+</body>
+</html>

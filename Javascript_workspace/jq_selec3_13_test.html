@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title> 객체 조작 및 생성 </title>  
+<script src="js/jquery.js"></script>
+<script>
+$(function( ){
+	$("strong").unwrap(); //상위 태그 요소 삭제
+	$(".ct1").wrap("<div />"); 
+	//클래스 ct1을 <div> 요소로 감싸기->새로 상위태그를 클래스마다 각각 생성
+	$(".ct2").wrapAll("<div />"); //모든 .ct2 클래스들을 하나의 div로 생성
+	$("li").wrapInner("<h3 />"); //li 하위 요소(값)들을 <h3>로 모두 감싸기
+});
+</script>
+<style>
+	div{background-color:aqua;}
+</style>
+</head>
+<body>
+	<h1 id="tit_1">
+	<strong>객체 조작 및 생성</strong>
+	</h1>
+	<p class="ct1">내용1</p>
+	<p class="ct1">내용2</p>
+	<p class="ct2">내용3</p>
+	<p class="ct2">내용4</p>
+	<ul>
+		<li>내용3</li>
+		<li>내용4</li>
+	</ul>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery.js"></script>
+    <script>
+        $(function() {
+            var style1 = {
+                "background-color" : "red",
+                "border" : "2px dashed blue"
+            }
+            var style2 = {
+                "background-color" : "yellow",
+                "border" : "2px dashed blue"
+            }
+            $(".txt1").parents().css(style1);
+            $(".txt2").parents("div").css(style2);
+            $(".txt3").closest("div").css("background-color", "pink");
+        });
+    </script>
+</head>
+<body>
+    <h1 class="title">선택자</h1>
+    <section>
+        <div>
+            <p class="txt1">내용</p>
+        </div>
+    </section>
+    <section>
+        <div>
+            <p class="txt2">내용</p>
+        </div>
+        <div>
+            <p class="txt3">내용</p>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title> 객체 조작 및 생성 </title>  
+<script src="js/jquery.js"></script>
+<script>
+$(function( ){
+	$("h2").replaceWith("<h3>replace 사용</h3>");
+	//h2 태그의 내용이 교체->h2 요소가 완전히 사라짐
+	$("<p>Change 변경됨</p>").replaceAll("div");
+	//한꺼번에 모든 태그의 요소를 변경할 때
+});
+</script>
+</head>
+<body>
+	<section class="box1">
+		<h2>제목1</h2>
+		<div>내용1</div>
+		<div>내용2</div>
+	</section>
+	<section class="box2">
+		<h2>제목2</h2>    
+		<div>내용3</div>
+		<div>내용4</div>
+	</section>
+</body>
+</html>
