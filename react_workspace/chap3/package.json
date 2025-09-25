@@ -4,8 +4,13 @@
   "description": "",
   "main": "sample.js",
   "scripts": {
+    "start": "node index2.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
 }
