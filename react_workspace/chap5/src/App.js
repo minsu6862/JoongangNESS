@@ -1,5 +1,8 @@
 import './App.css';
 import Body from './component/body';
+import Body2 from './component/Body2';
+import Body3 from './component/Body3';
+import Body4 from './component/Body4';
 import Footer from './component/footer';
 import Header from './component/header';
 
@@ -17,9 +20,13 @@ function App() {
     <div className="App">
       <Header/>
       {/* <Body name = {name} age = {age} /> props내에 속성이 여러개면 불편 */}
-      <Body {...BodyProps}>
+      {/*<Body {...BodyProps}>
         <ChildComp />
-      </Body>
+      </Body>*/}
+      {/*<Body2></Body2>*/}
+      {/*<Join/>*/}
+      {/*<Body3></Body3>*/}
+      <Body4></Body4>
       <Footer/>
     </div>
   );
