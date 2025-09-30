@@ -1,0 +1,48 @@
+.StudentInput {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.StudentInput input {
+    padding: 10px 15px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 120px;
+    transition: border-color 0.3s;
+}
+
+.StudentInput input:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+.StudentInput input::placeholder {
+    color: #999;
+}
+
+.StudentInput button {
+    padding: 10px 25px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.StudentInput button:hover {
+    background-color: #45a049;
+}
+
+.StudentInput button:active {
+    transform: scale(0.98);
+}

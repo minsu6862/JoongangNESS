@@ -1,0 +1,32 @@
+.StudentItem td {
+    padding: 12px 15px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+}
+
+.StudentItem td:first-child {
+    font-weight: 600;
+    color: #667eea;
+}
+
+.StudentItem button {
+    padding: 6px 15px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.StudentItem button:hover {
+    background-color: #da190b;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(244, 67, 54, 0.3);
+}
+
+.StudentItem button:active {
+    transform: translateY(0);
+}

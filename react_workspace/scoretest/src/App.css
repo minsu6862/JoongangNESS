@@ -1,0 +1,13 @@
+.App {
+    min-height: 100vh;
+    background-color: #f9f9f9;  /* 아주 연한 회색 */
+    padding: 30px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.App h2 {
+    text-align: center;
+    color: #333;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
