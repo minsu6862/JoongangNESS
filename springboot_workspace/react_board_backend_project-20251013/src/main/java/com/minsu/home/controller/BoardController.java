@@ -157,6 +157,11 @@ public class BoardController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id, Authentication auth) {
 	    
+	    // 로그인 여부 확인 추가
+	    if (auth == null) {
+	        return ResponseEntity.status(401).body("로그인이 필요합니다.");
+	    }
+	    
 	    Board board = boardRepository.findById(id)
 	            .orElseThrow(() -> new EntityNotFoundException("해당 글이 존재하지 않습니다."));
 	    

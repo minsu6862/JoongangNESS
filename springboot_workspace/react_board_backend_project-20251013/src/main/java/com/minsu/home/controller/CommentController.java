@@ -49,7 +49,7 @@ public class CommentController {
             @Valid @RequestBody CommentDto commentDto, BindingResult bindingResult, Authentication auth) {
         
     	//Spring Validation 결과 처리
-    	if(bindingResult.hasErrors()) {	//참이면 에러, 유효성 체크 실패 -> err
+    	if(bindingResult.hasErrors()) {
     		Map<String, String> errors = new HashMap<>();
     		bindingResult.getFieldErrors().forEach(
     			err -> {
@@ -100,7 +100,19 @@ public class CommentController {
     public ResponseEntity<?> updateComment(@PathVariable("boardId") Long boardId,
             @PathVariable("commentId") Long commentId,
             @Valid @RequestBody CommentDto commentDto,
+            BindingResult bindingResult,
             Authentication auth) {
+
+        //Spring Validation 결과 처리
+        if(bindingResult.hasErrors()) {
+            Map<String, String> errors = new HashMap<>();
+            bindingResult.getFieldErrors().forEach(
+                err -> {
+                    errors.put(err.getField(), err.getDefaultMessage());
+                }
+            );
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
+        }
 
         // 댓글 존재 여부 확인
         Optional<Comment> _comment = commentRepository.findById(commentId);
@@ -119,7 +131,10 @@ public class CommentController {
         comment.setContent(commentDto.getContent());
         commentRepository.save(comment);
 
-        return ResponseEntity.ok(comment);
+        // 성공 메시지만 반환 (Comment 객체 직렬화 에러 방지)
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "댓글이 수정되었습니다.");
+        return ResponseEntity.ok(response);
     }
 
     // 댓글 삭제
